@@ -11,7 +11,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700;800&display=swap');
         body {
             font-family: 'Sarabun', sans-serif;
-            background-color: #f1f5f9;
+            background-color: #f8fafc;
         }
         input[type=number]::-webkit-inner-spin-button, 
         input[type=number]::-webkit-outer-spin-button { 
@@ -19,17 +19,17 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col text-slate-800">
+<body class="min-h-screen flex flex-col text-slate-900">
 
     <!-- Header Navigation -->
-    <header class="bg-slate-900 text-white shadow-md sticky top-0 z-50">
+    <header class="bg-slate-900 text-white shadow-lg sticky top-0 z-50 border-b-4 border-teal-500">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="showPage('home')">
-                <i class="fa-solid fa-calculator text-2xl text-teal-400"></i>
-                <span class="font-bold text-xl tracking-wide">Rx Calc Tools</span>
+                <i class="fa-solid fa-calculator text-3xl text-teal-400"></i>
+                <span class="font-extrabold text-2xl tracking-wide">Rx Calc Tools</span>
             </div>
-            <button id="btn-home" onclick="showPage('home')" class="hidden bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition border border-slate-700 flex items-center space-x-2">
-                <i class="fa-solid fa-house"></i>
+            <button id="btn-home" onclick="showPage('home')" class="hidden bg-slate-800 hover:bg-slate-700 text-white px-5 py-2.5 rounded-xl text-base font-bold transition border-2 border-slate-600 flex items-center space-x-2">
+                <i class="fa-solid fa-house text-lg"></i>
                 <span>หน้าหลัก</span>
             </button>
         </div>
@@ -40,197 +40,209 @@
 
         <!-- ================= HOME PAGE ================= -->
         <section id="page-home" class="space-y-6">
-            <div class="text-center py-8 bg-white rounded-2xl shadow-sm border border-slate-200">
-                <h1 class="text-2xl md:text-3xl font-extrabold text-slate-800">เครื่องมือช่วยคำนวณเวชปฏิบัติ</h1>
-                <p class="text-slate-500 mt-2 text-sm md:text-base">คำนวณรวดเร็ว เน้นรูปภาพ ใช้งานง่าย ไม่เก็บข้อมูล</p>
+            <div class="text-center py-8 bg-white rounded-3xl shadow-md border-2 border-slate-200">
+                <h1 class="text-3xl md:text-4xl font-black text-slate-800">เครื่องมือช่วยคำนวณเวชปฏิบัติ</h1>
+                <p class="text-slate-600 mt-2 text-base md:text-lg font-bold">คำนวณรวดเร็ว เน้นตัวหนังสือใหญ่ อ่านง่าย สะดวกแก่การใช้งาน</p>
             </div>
 
             <!-- Thumbnail Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Tool 1: Insulin -->
-                <div onclick="showPage('insulin')" class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 cursor-pointer overflow-hidden group border-t-4 border-t-blue-600">
-                    <div class="p-6">
-                        <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-syringe"></i>
-                        </div>
-                        <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-md">พร้อมใช้งาน</span>
-                        <h3 class="text-xl font-extrabold text-slate-800 mt-2 group-hover:text-blue-600">1. Insulin 'n TB (Insulin Calc)</h3>
-                        <p class="text-slate-500 text-sm mt-2">คำนวณปริมาณยาฉีด, อุปกรณ์ Syringe / Pen Needle / Alc. Ball และวันนัด</p>
+                <div onclick="showPage('insulin')" class="bg-white rounded-3xl shadow-md hover:shadow-2xl transition-all duration-300 border-4 border-blue-500 cursor-pointer overflow-hidden group p-6">
+                    <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-4 text-3xl group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-syringe"></i>
                     </div>
+                    <span class="bg-emerald-100 text-emerald-800 text-sm font-black px-3 py-1 rounded-lg">พร้อมใช้งาน</span>
+                    <h3 class="text-2xl font-black text-slate-800 mt-3 group-hover:text-blue-600">1. Insulin Calc (คำนวณยาฉีดเบาหวาน)</h3>
+                    <p class="text-slate-600 text-base font-semibold mt-2">คำนวณปริมาณยา, Needle Pen, Syringe, Alc. Ball และวันนัดนัดถัดไป</p>
                 </div>
 
                 <!-- Tool 2: TB Dosing -->
-                <div class="bg-slate-50 rounded-2xl border border-slate-200 opacity-60 p-6">
-                    <div class="w-14 h-14 bg-slate-200 text-slate-500 rounded-xl flex items-center justify-center mb-4 text-2xl">
+                <div class="bg-slate-100 rounded-3xl border-2 border-slate-300 opacity-60 p-6">
+                    <div class="w-16 h-16 bg-slate-200 text-slate-500 rounded-2xl flex items-center justify-center mb-4 text-3xl">
                         <i class="fa-solid fa-capsules"></i>
                     </div>
-                    <span class="bg-slate-200 text-slate-600 text-xs font-bold px-2.5 py-1 rounded-md">กำลังพัฒนา</span>
-                    <h3 class="text-xl font-bold text-slate-700 mt-2">2. TB Dosing Calc</h3>
-                    <p class="text-slate-500 text-sm mt-2">คำนวณยาวัณโรคตาม BW & eGFR</p>
+                    <span class="bg-slate-300 text-slate-700 text-sm font-bold px-3 py-1 rounded-lg">กำลังพัฒนา</span>
+                    <h3 class="text-2xl font-bold text-slate-700 mt-3">2. TB Dosing Calc</h3>
+                    <p class="text-slate-500 text-base mt-2">คำนวณยาวัณโรคตาม BW & eGFR</p>
                 </div>
 
                 <!-- Tool 3: Favipiravir -->
-                <div class="bg-slate-50 rounded-2xl border border-slate-200 opacity-60 p-6">
-                    <div class="w-14 h-14 bg-slate-200 text-slate-500 rounded-xl flex items-center justify-center mb-4 text-2xl">
+                <div class="bg-slate-100 rounded-3xl border-2 border-slate-300 opacity-60 p-6">
+                    <div class="w-16 h-16 bg-slate-200 text-slate-500 rounded-2xl flex items-center justify-center mb-4 text-3xl">
                         <i class="fa-solid fa-pills"></i>
                     </div>
-                    <span class="bg-slate-200 text-slate-600 text-xs font-bold px-2.5 py-1 rounded-md">กำลังพัฒนา</span>
-                    <h3 class="text-xl font-bold text-slate-700 mt-2">3. Favipiravir Calc</h3>
-                    <p class="text-slate-500 text-sm mt-2">คำนวณยา Favipiravir ต่อคอร์ส</p>
+                    <span class="bg-slate-300 text-slate-700 text-sm font-bold px-3 py-1 rounded-lg">กำลังพัฒนา</span>
+                    <h3 class="text-2xl font-bold text-slate-700 mt-3">3. Favipiravir Calc</h3>
+                    <p class="text-slate-500 text-base mt-2">คำนวณยา Favipiravir ต่อคอร์ส</p>
                 </div>
             </div>
         </section>
 
         <!-- ================= TOOL 1: INSULIN PAGE ================= -->
-        <section id="page-insulin" class="hidden space-y-4">
+        <section id="page-insulin" class="hidden space-y-6">
             
-            <!-- Main Grid Layout (Matching Spreadsheet style) -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
+            <!-- Main Grid Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                 
                 <!-- Left Panel: Input & F/U Date -->
-                <div class="lg:col-span-4 bg-white rounded-2xl shadow-md border-2 border-slate-800 overflow-hidden flex flex-col justify-between min-h-[500px]">
+                <div class="lg:col-span-4 bg-white rounded-3xl shadow-xl border-4 border-slate-800 overflow-hidden flex flex-col justify-between">
                     <div>
                         <!-- Header Input -->
-                        <div class="bg-slate-900 text-white p-3 text-center flex justify-between items-center">
-                            <span class="text-xl font-black tracking-wider text-amber-400">กรอก <i class="fa-solid fa-circle-arrow-down text-emerald-400"></i></span>
-                            <button onclick="resetInsulinForm()" class="text-xs bg-slate-800 hover:bg-slate-700 px-2 py-1 rounded text-slate-300 border border-slate-700">
+                        <div class="bg-slate-900 text-white p-4 text-center flex justify-between items-center">
+                            <span class="text-2xl font-black text-amber-400">กรอกข้อมูล <i class="fa-solid fa-circle-arrow-down text-emerald-400"></i></span>
+                            <button onclick="resetInsulinForm()" class="text-sm bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg text-slate-200 border border-slate-600 font-bold">
                                 <i class="fa-solid fa-arrow-rotate-right"></i> รีเซ็ต
                             </button>
                         </div>
 
                         <!-- Input Fields -->
-                        <div class="p-4 space-y-3 bg-black text-white">
+                        <div class="p-5 space-y-4 bg-slate-950 text-white">
                             <!-- Morning -->
                             <div class="flex items-center justify-between gap-2">
-                                <label class="text-2xl font-black text-amber-400 w-20">เช้า</label>
+                                <label class="text-3xl font-black text-amber-400 w-24">เช้า</label>
                                 <input type="number" id="ins-morning" value="28" min="0" step="1" 
                                     onkeydown="handleEnterKey(event, 'ins-evening')" oninput="calculateInsulin()"
-                                    class="w-28 text-center text-3xl font-black bg-white text-amber-600 rounded-lg p-1 border-2 border-amber-400 focus:outline-none focus:ring-4 focus:ring-amber-300">
-                                <span class="text-sm text-slate-300 font-semibold">Unit(s)</span>
+                                    class="w-32 text-center text-4xl font-black bg-white text-amber-600 rounded-xl p-2 border-4 border-amber-400 focus:outline-none focus:ring-4 focus:ring-amber-300">
+                                <span class="text-lg text-slate-300 font-extrabold">Unit</span>
                             </div>
 
                             <!-- Evening -->
                             <div class="flex items-center justify-between gap-2">
-                                <label class="text-2xl font-black text-emerald-400 w-20">เย็น</label>
+                                <label class="text-3xl font-black text-emerald-400 w-24">เย็น</label>
                                 <input type="number" id="ins-evening" value="16" min="0" step="1" 
                                     onkeydown="handleEnterKey(event, 'ins-fu-days')" oninput="calculateInsulin()"
-                                    class="w-28 text-center text-3xl font-black bg-white text-emerald-600 rounded-lg p-1 border-2 border-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-300">
-                                <span class="text-sm text-slate-300 font-semibold">Unit(s)</span>
+                                    class="w-32 text-center text-4xl font-black bg-white text-emerald-600 rounded-xl p-2 border-4 border-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-300">
+                                <span class="text-lg text-slate-300 font-extrabold">Unit</span>
                             </div>
 
                             <!-- F/U Days -->
                             <div class="flex items-center justify-between gap-2">
-                                <label class="text-2xl font-black text-sky-400 w-20">F/U</label>
+                                <label class="text-3xl font-black text-sky-400 w-24">วันนัด</label>
                                 <input type="number" id="ins-fu-days" value="61" min="1" step="1" 
                                     onkeydown="handleEnterKey(event, 'ins-start-date')" oninput="calculateInsulin()"
-                                    class="w-28 text-center text-3xl font-black bg-white text-sky-600 rounded-lg p-1 border-2 border-sky-400 focus:outline-none focus:ring-4 focus:ring-sky-300">
-                                <span class="text-sm text-slate-300 font-semibold">Day(s)</span>
+                                    class="w-32 text-center text-4xl font-black bg-white text-sky-600 rounded-xl p-2 border-4 border-sky-400 focus:outline-none focus:ring-4 focus:ring-sky-300">
+                                <span class="text-lg text-slate-300 font-extrabold">วัน</span>
                             </div>
 
                             <!-- Start Date -->
-                            <div class="pt-2 border-t border-slate-800 flex items-center justify-between">
-                                <label class="text-xs text-slate-400">วันเริ่มคำนวณ:</label>
+                            <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
+                                <label class="text-sm font-bold text-slate-400">วันเริ่มคำนวณ:</label>
                                 <input type="date" id="ins-start-date" onchange="calculateInsulin()" 
-                                    class="text-xs bg-slate-800 text-white rounded px-2 py-1 border border-slate-700">
+                                    class="text-sm bg-slate-800 text-white rounded-lg px-3 py-1.5 border border-slate-700 font-bold">
                             </div>
                         </div>
 
                         <!-- Option Toggle for Alc Ball -->
-                        <div class="p-3 bg-slate-100 border-t border-b border-slate-200">
-                            <label class="block text-xs font-bold text-slate-600 mb-1 text-center">ตัวเลือกขนาด Alcohol Cotton Ball</label>
-                            <div class="grid grid-cols-3 gap-1 text-xs font-bold">
-                                <button id="btn-alc-all" onclick="setAlcMode('all')" class="py-1.5 rounded bg-blue-600 text-white shadow">แสดงทั้งคู่</button>
-                                <button id="btn-alc-8" onclick="setAlcMode('8')" class="py-1.5 rounded bg-white text-slate-700 border hover:bg-slate-50">เฉพาะ #8</button>
-                                <button id="btn-alc-10" onclick="setAlcMode('10')" class="py-1.5 rounded bg-white text-slate-700 border hover:bg-slate-50">เฉพาะ #10</button>
+                        <div class="p-4 bg-slate-100 border-t-2 border-b-2 border-slate-300">
+                            <label class="block text-sm font-black text-slate-700 mb-2 text-center">สลับตัวเลือก Alcohol Cotton Ball</label>
+                            <div class="grid grid-cols-3 gap-2 text-sm font-black">
+                                <button id="btn-alc-all" onclick="setAlcMode('all')" class="py-2 rounded-xl bg-blue-600 text-white shadow-md">แสดงทั้งคู่</button>
+                                <button id="btn-alc-8" onclick="setAlcMode('8')" class="py-2 rounded-xl bg-white text-slate-700 border-2 hover:bg-slate-50">เฉพาะ #8</button>
+                                <button id="btn-alc-10" onclick="setAlcMode('10')" class="py-2 rounded-xl bg-white text-slate-700 border-2 hover:bg-slate-50">เฉพาะ #10</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- F/U Date Verification Box (Bottom Center) -->
-                    <div class="p-4 bg-amber-50 border-t-2 border-amber-300 text-center space-y-1">
-                        <span class="text-xs font-black text-amber-800 tracking-wider uppercase block bg-amber-200 py-0.5 rounded">next F/U (วันนัดถัดไป)</span>
-                        <div id="res-fu-date" class="text-3xl font-black text-slate-900">02/10/2567</div>
-                        <div id="res-fu-day" class="text-2xl font-black text-blue-700">Mon</div>
+                    <!-- F/U Date Box -->
+                    <div class="p-4 bg-amber-50 border-t-4 border-amber-400 text-center space-y-2">
+                        <span class="text-sm font-black text-amber-900 tracking-wider uppercase block bg-amber-200 py-1 rounded-lg">วันนัดถัดไป (Next F/U)</span>
+                        <div id="res-fu-date" class="text-2xl md:text-3xl font-black text-slate-900 leading-tight">31 ก.ค. 2569 (31/07/69)</div>
+                        <div id="res-fu-day" class="text-2xl font-black text-blue-700">Mon (วันจันทร์)</div>
+                        
+                        <!-- Weekend Alert Banner (No pop-up) -->
+                        <div id="weekend-warning" class="hidden bg-red-600 text-white p-3 rounded-xl font-black text-base animate-pulse shadow-lg flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-triangle-exclamation text-2xl text-yellow-300"></i>
+                            <span id="warning-text">ตรงกับวันหยุด! กรุณาเลื่อนวันนัด</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Right Panel: Penfill vs Vial Output Columns Side by Side -->
-                <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                     
                     <!-- COLUMN 1: PENFILL (Light Blue Background) -->
-                    <div class="bg-blue-50/90 rounded-2xl shadow-md border-2 border-blue-300 overflow-hidden flex flex-col justify-between p-4 space-y-4">
+                    <div class="bg-sky-100/90 rounded-3xl shadow-xl border-4 border-sky-400 overflow-hidden flex flex-col justify-between p-5 space-y-4">
                         <div>
                             <!-- Header Penfill -->
-                            <div class="text-center border-b-2 border-blue-200 pb-2">
-                                <h3 class="text-3xl font-black text-blue-900">Penfill</h3>
-                                <div class="text-sm font-bold text-blue-700 mt-1 flex justify-center items-center gap-2">
-                                    <span>Calc:</span>
-                                    <span id="res-cartridge-calc" class="text-base text-blue-900 font-black bg-blue-100 px-2 py-0.5 rounded">8.95</span>
-                                    <span class="text-xs">Cartridge</span>
-                                </div>
+                            <div class="text-center border-b-4 border-sky-300 pb-3">
+                                <h3 class="text-4xl font-black text-sky-950">Penfill</h3>
                             </div>
 
                             <!-- List of Items -->
                             <div class="mt-4 space-y-4">
                                 <!-- Cartridge Net -->
-                                <div class="flex items-center justify-between bg-white/80 p-2.5 rounded-xl border border-blue-200 shadow-sm">
+                                <div class="flex items-center justify-between bg-white/90 p-3.5 rounded-2xl border-2 border-sky-300 shadow-sm">
                                     <div class="flex items-center space-x-3">
-                                        <div class="w-12 h-12 flex-shrink-0 bg-blue-100 rounded-lg flex items-center justify-center p-1">
-                                            <i class="fa-solid fa-capsules text-2xl text-blue-600"></i>
+                                        <!-- SVG Cartridge Icon -->
+                                        <div class="w-14 h-14 flex-shrink-0 bg-sky-100 rounded-xl flex items-center justify-center p-2 border border-sky-300">
+                                            <svg viewBox="0 0 64 64" class="w-10 h-10 text-sky-600" fill="currentColor">
+                                                <rect x="18" y="8" width="28" height="48" rx="4" fill="#0284c7" />
+                                                <rect x="22" y="14" width="20" height="24" rx="2" fill="#e0f2fe" />
+                                                <rect x="24" y="44" width="16" height="8" rx="1" fill="#0369a1" />
+                                            </svg>
                                         </div>
-                                        <span class="text-sm font-black text-slate-700">Cartridge</span>
+                                        <div>
+                                            <span class="text-lg font-black text-slate-800 block">Cartridge</span>
+                                            <span class="text-xs font-bold text-slate-500">คำนวณจริง: <span id="res-cartridge-calc" class="text-sky-700 font-black">8.95</span> หลอด</span>
+                                        </div>
                                     </div>
                                     <div class="text-right">
-                                        <span id="res-cartridge-net" class="text-3xl font-black text-blue-900">9</span>
-                                        <span class="text-xs font-bold text-slate-500 block">หลอด</span>
+                                        <span id="res-cartridge-net" class="text-5xl font-black text-sky-950">9</span>
+                                        <span class="text-sm font-black text-slate-600 block">หลอด</span>
                                     </div>
                                 </div>
 
                                 <!-- Needle Pen -->
-                                <div class="flex items-center justify-between bg-white/80 p-2.5 rounded-xl border border-blue-200 shadow-sm">
+                                <div class="flex items-center justify-between bg-white/90 p-3.5 rounded-2xl border-2 border-sky-300 shadow-sm">
                                     <div class="flex items-center space-x-3">
-                                        <div class="w-12 h-12 flex-shrink-0 bg-orange-100 rounded-lg flex items-center justify-center p-1">
-                                            <i class="fa-solid fa-vial-circle-check text-2xl text-orange-600"></i>
+                                        <!-- SVG Needle Pen Icon -->
+                                        <div class="w-14 h-14 flex-shrink-0 bg-amber-100 rounded-xl flex items-center justify-center p-2 border border-amber-300">
+                                            <svg viewBox="0 0 64 64" class="w-10 h-10 text-amber-600" fill="currentColor">
+                                                <path d="M28 10 h8 v16 h-8 z" fill="#d97706"/>
+                                                <path d="M24 26 h16 v24 h-16 z" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+                                                <line x1="32" y1="50" x2="32" y2="60" stroke="#451a03" stroke-width="3"/>
+                                            </svg>
                                         </div>
-                                        <span class="text-sm font-black text-slate-700">Needle Pen</span>
+                                        <span class="text-lg font-black text-slate-800">Needle Pen</span>
                                     </div>
                                     <div class="text-right">
-                                        <span id="res-pen-needle" class="text-3xl font-black text-blue-900">31</span>
-                                        <span class="text-xs font-bold text-slate-500 block">ชิ้น</span>
+                                        <span id="res-pen-needle" class="text-5xl font-black text-sky-950">31</span>
+                                        <span class="text-sm font-black text-slate-600 block">ชิ้น</span>
                                     </div>
                                 </div>
 
                                 <!-- Alc Ball #8 -->
-                                <div id="box-penfill-alc8" class="flex items-center justify-between bg-white/80 p-2.5 rounded-xl border border-blue-200 shadow-sm">
+                                <div id="box-penfill-alc8" class="flex items-center justify-between bg-white/90 p-3.5 rounded-2xl border-2 border-sky-300 shadow-sm">
                                     <div class="flex items-center space-x-3">
-                                        <div class="w-12 h-12 flex-shrink-0 bg-slate-200 rounded-lg flex items-center justify-center p-1">
-                                            <i class="fa-solid fa-cubes-stacked text-2xl text-slate-600"></i>
+                                        <div class="w-14 h-14 flex-shrink-0 bg-slate-100 rounded-xl flex items-center justify-center p-2 border border-slate-300">
+                                            <i class="fa-solid fa-cubes-stacked text-3xl text-slate-600"></i>
                                         </div>
                                         <div>
-                                            <span class="text-sm font-black text-slate-700 block">Alc. Ball #8</span>
-                                            <span class="text-[10px] text-slate-500 font-semibold">(8 ก้อน/ถุง)</span>
+                                            <span class="text-lg font-black text-slate-800 block">Alc. Ball #8</span>
+                                            <span class="text-xs font-bold text-slate-500">(8 ก้อน/ถุง)</span>
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <span id="res-penfill-alc8" class="text-3xl font-black text-blue-900">16</span>
-                                        <span class="text-xs font-bold text-slate-500 block">ถุง</span>
+                                        <span id="res-penfill-alc8" class="text-5xl font-black text-sky-950">16</span>
+                                        <span class="text-sm font-black text-slate-600 block">ถุง</span>
                                     </div>
                                 </div>
 
                                 <!-- Alc Ball #10 -->
-                                <div id="box-penfill-alc10" class="flex items-center justify-between bg-white/80 p-2.5 rounded-xl border border-blue-200 shadow-sm">
+                                <div id="box-penfill-alc10" class="flex items-center justify-between bg-white/90 p-3.5 rounded-2xl border-2 border-sky-300 shadow-sm">
                                     <div class="flex items-center space-x-3">
-                                        <div class="w-12 h-12 flex-shrink-0 bg-slate-200 rounded-lg flex items-center justify-center p-1">
-                                            <i class="fa-solid fa-boxes-packing text-2xl text-slate-600"></i>
+                                        <div class="w-14 h-14 flex-shrink-0 bg-slate-100 rounded-xl flex items-center justify-center p-2 border border-slate-300">
+                                            <i class="fa-solid fa-boxes-packing text-3xl text-slate-600"></i>
                                         </div>
                                         <div>
-                                            <span class="text-sm font-black text-slate-700 block">Alc. Ball #10</span>
-                                            <span class="text-[10px] text-slate-500 font-semibold">(10 ก้อน/ถุง)</span>
+                                            <span class="text-lg font-black text-slate-800 block">Alc. Ball #10</span>
+                                            <span class="text-xs font-bold text-slate-500">(10 ก้อน/ถุง)</span>
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <span id="res-penfill-alc10" class="text-3xl font-black text-blue-900">13</span>
-                                        <span class="text-xs font-bold text-slate-500 block">ถุง</span>
+                                        <span id="res-penfill-alc10" class="text-5xl font-black text-sky-950">13</span>
+                                        <span class="text-sm font-black text-slate-600 block">ถุง</span>
                                     </div>
                                 </div>
 
@@ -239,79 +251,87 @@
                     </div>
 
                     <!-- COLUMN 2: VIAL (Light Amber Background) -->
-                    <div class="bg-amber-50/90 rounded-2xl shadow-md border-2 border-amber-300 overflow-hidden flex flex-col justify-between p-4 space-y-4">
+                    <div class="bg-amber-100/90 rounded-3xl shadow-xl border-4 border-amber-400 overflow-hidden flex flex-col justify-between p-5 space-y-4">
                         <div>
                             <!-- Header Vial -->
-                            <div class="text-center border-b-2 border-amber-200 pb-2">
-                                <h3 class="text-3xl font-black text-amber-900">Vial</h3>
-                                <div class="text-sm font-bold text-amber-700 mt-1 flex justify-center items-center gap-2">
-                                    <span>Calc:</span>
-                                    <span id="res-vial-calc" class="text-base text-amber-900 font-black bg-amber-100 px-2 py-0.5 rounded">2.68</span>
-                                    <span class="text-xs">Vial(s)</span>
-                                </div>
+                            <div class="text-center border-b-4 border-amber-300 pb-3">
+                                <h3 class="text-4xl font-black text-amber-950">Vial</h3>
                             </div>
 
                             <!-- List of Items -->
                             <div class="mt-4 space-y-4">
                                 <!-- Vial Net -->
-                                <div class="flex items-center justify-between bg-white/80 p-2.5 rounded-xl border border-amber-200 shadow-sm">
+                                <div class="flex items-center justify-between bg-white/90 p-3.5 rounded-2xl border-2 border-amber-300 shadow-sm">
                                     <div class="flex items-center space-x-3">
-                                        <div class="w-12 h-12 flex-shrink-0 bg-amber-100 rounded-lg flex items-center justify-center p-1">
-                                            <i class="fa-solid fa-flask text-2xl text-amber-600"></i>
+                                        <!-- SVG Vial Icon -->
+                                        <div class="w-14 h-14 flex-shrink-0 bg-amber-100 rounded-xl flex items-center justify-center p-2 border border-amber-300">
+                                            <svg viewBox="0 0 64 64" class="w-10 h-10 text-amber-600" fill="currentColor">
+                                                <rect x="22" y="6" width="20" height="8" rx="2" fill="#d97706" />
+                                                <rect x="18" y="14" width="28" height="44" rx="4" fill="#fffbeb" stroke="#d97706" stroke-width="3" />
+                                                <rect x="22" y="24" width="20" height="24" rx="2" fill="#fde68a" />
+                                            </svg>
                                         </div>
-                                        <span class="text-sm font-black text-slate-700">Vial(s)</span>
+                                        <div>
+                                            <span class="text-lg font-black text-slate-800 block">Vial(s)</span>
+                                            <span class="text-xs font-bold text-slate-500">คำนวณจริง: <span id="res-vial-calc" class="text-amber-700 font-black">2.68</span> ขวด</span>
+                                        </div>
                                     </div>
                                     <div class="text-right">
-                                        <span id="res-vial-net" class="text-3xl font-black text-amber-900">3</span>
-                                        <span class="text-xs font-bold text-slate-500 block">ขวด</span>
+                                        <span id="res-vial-net" class="text-5xl font-black text-amber-950">3</span>
+                                        <span class="text-sm font-black text-slate-600 block">ขวด</span>
                                     </div>
                                 </div>
 
                                 <!-- Syringe -->
-                                <div class="flex items-center justify-between bg-white/80 p-2.5 rounded-xl border border-amber-200 shadow-sm">
+                                <div class="flex items-center justify-between bg-white/90 p-3.5 rounded-2xl border-2 border-amber-300 shadow-sm">
                                     <div class="flex items-center space-x-3">
-                                        <div class="w-12 h-12 flex-shrink-0 bg-teal-100 rounded-lg flex items-center justify-center p-1">
-                                            <i class="fa-solid fa-syringe text-2xl text-teal-600"></i>
+                                        <!-- SVG Syringe Icon -->
+                                        <div class="w-14 h-14 flex-shrink-0 bg-teal-100 rounded-xl flex items-center justify-center p-2 border border-teal-300">
+                                            <svg viewBox="0 0 64 64" class="w-10 h-10 text-teal-600" fill="currentColor">
+                                                <path d="M12 48 L48 12 L52 16 L16 52 Z" fill="#0d9488" />
+                                                <line x1="8" y1="56" x2="16" y2="48" stroke="#115e59" stroke-width="4" />
+                                                <line x1="48" y1="12" x2="58" y2="2" stroke="#0f766e" stroke-width="3" />
+                                            </svg>
                                         </div>
-                                        <span class="text-sm font-black text-slate-700">Syringe</span>
+                                        <span class="text-lg font-black text-slate-800">Syringe</span>
                                     </div>
                                     <div class="text-right">
-                                        <span id="res-syringe" class="text-3xl font-black text-amber-900">61</span>
-                                        <span class="text-xs font-bold text-slate-500 block">ชิ้น</span>
+                                        <span id="res-syringe" class="text-5xl font-black text-amber-950">61</span>
+                                        <span class="text-sm font-black text-slate-600 block">ชิ้น</span>
                                     </div>
                                 </div>
 
                                 <!-- Alc Ball #8 -->
-                                <div id="box-vial-alc8" class="flex items-center justify-between bg-white/80 p-2.5 rounded-xl border border-amber-200 shadow-sm">
+                                <div id="box-vial-alc8" class="flex items-center justify-between bg-white/90 p-3.5 rounded-2xl border-2 border-amber-300 shadow-sm">
                                     <div class="flex items-center space-x-3">
-                                        <div class="w-12 h-12 flex-shrink-0 bg-slate-200 rounded-lg flex items-center justify-center p-1">
-                                            <i class="fa-solid fa-cubes-stacked text-2xl text-slate-600"></i>
+                                        <div class="w-14 h-14 flex-shrink-0 bg-slate-100 rounded-xl flex items-center justify-center p-2 border border-slate-300">
+                                            <i class="fa-solid fa-cubes-stacked text-3xl text-slate-600"></i>
                                         </div>
                                         <div>
-                                            <span class="text-sm font-black text-slate-700 block">Alc. Ball #8</span>
-                                            <span class="text-[10px] text-slate-500 font-semibold">(8 ก้อน/ถุง)</span>
+                                            <span class="text-lg font-black text-slate-800 block">Alc. Ball #8</span>
+                                            <span class="text-xs font-bold text-slate-500">(8 ก้อน/ถุง)</span>
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <span id="res-vial-alc8" class="text-3xl font-black text-amber-900">16</span>
-                                        <span class="text-xs font-bold text-slate-500 block">ถุง</span>
+                                        <span id="res-vial-alc8" class="text-5xl font-black text-amber-950">16</span>
+                                        <span class="text-sm font-black text-slate-600 block">ถุง</span>
                                     </div>
                                 </div>
 
                                 <!-- Alc Ball #10 -->
-                                <div id="box-vial-alc10" class="flex items-center justify-between bg-white/80 p-2.5 rounded-xl border border-amber-200 shadow-sm">
+                                <div id="box-vial-alc10" class="flex items-center justify-between bg-white/90 p-3.5 rounded-2xl border-2 border-amber-300 shadow-sm">
                                     <div class="flex items-center space-x-3">
-                                        <div class="w-12 h-12 flex-shrink-0 bg-slate-200 rounded-lg flex items-center justify-center p-1">
-                                            <i class="fa-solid fa-boxes-packing text-2xl text-slate-600"></i>
+                                        <div class="w-14 h-14 flex-shrink-0 bg-slate-100 rounded-xl flex items-center justify-center p-2 border border-slate-300">
+                                            <i class="fa-solid fa-boxes-packing text-3xl text-slate-600"></i>
                                         </div>
                                         <div>
-                                            <span class="text-sm font-black text-slate-700 block">Alc. Ball #10</span>
-                                            <span class="text-[10px] text-slate-500 font-semibold">(10 ก้อน/ถุง)</span>
+                                            <span class="text-lg font-black text-slate-800 block">Alc. Ball #10</span>
+                                            <span class="text-xs font-bold text-slate-500">(10 ก้อน/ถุง)</span>
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <span id="res-vial-alc10" class="text-3xl font-black text-amber-900">13</span>
-                                        <span class="text-xs font-bold text-slate-500 block">ถุง</span>
+                                        <span id="res-vial-alc10" class="text-5xl font-black text-amber-950">13</span>
+                                        <span class="text-sm font-black text-slate-600 block">ถุง</span>
                                     </div>
                                 </div>
 
@@ -330,6 +350,11 @@
     <!-- JavaScript Logic -->
     <script>
         let alcMode = 'all'; 
+
+        const thaiMonths = [
+            "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.",
+            "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."
+        ];
 
         document.addEventListener('DOMContentLoaded', () => {
             const today = new Date().toISOString().split('T')[0];
@@ -374,15 +399,15 @@
             const btn10 = document.getElementById('btn-alc-10');
 
             [btnAll, btn8, btn10].forEach(btn => {
-                btn.className = "py-1.5 rounded bg-white text-slate-700 border hover:bg-slate-50";
+                btn.className = "py-2 rounded-xl bg-white text-slate-700 border-2 hover:bg-slate-50";
             });
 
             if (mode === 'all') {
-                btnAll.className = "py-1.5 rounded bg-blue-600 text-white shadow";
+                btnAll.className = "py-2 rounded-xl bg-blue-600 text-white shadow-md";
             } else if (mode === '8') {
-                btn8.className = "py-1.5 rounded bg-blue-600 text-white shadow";
+                btn8.className = "py-2 rounded-xl bg-blue-600 text-white shadow-md";
             } else if (mode === '10') {
-                btn10.className = "py-1.5 rounded bg-blue-600 text-white shadow";
+                btn10.className = "py-2 rounded-xl bg-blue-600 text-white shadow-md";
             }
 
             updateAlcVisibility();
@@ -428,44 +453,65 @@
             const fuDays = parseInt(document.getElementById('ins-fu-days').value) || 0;
             const startDateVal = document.getElementById('ins-start-date').value;
 
+            // ค่าตั้งต้น A = (เช้า + เย็น) * จำนวนวัน
             const dailyDose = morningDose + eveningDose;
-            const totalUnits = dailyDose * fuDays;
+            const totalUnitsA = dailyDose * fuDays;
 
+            // 1. F/U Date Format & Weekend Detection
             let fuDateStr = '-';
             let dayOfWeekStr = '-';
+            const warningBox = document.getElementById('weekend-warning');
+            const warningText = document.getElementById('warning-text');
             
             if (startDateVal && fuDays > 0) {
                 const startDate = new Date(startDateVal);
                 const fuDate = new Date(startDate);
                 fuDate.setDate(startDate.getDate() + fuDays);
 
-                const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-                dayOfWeekStr = dayNames[fuDate.getDay()];
+                const dayIndex = fuDate.getDay();
+                const dayNamesShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                const dayNamesThai = ['วันอาทิตย์', 'วันจันทร์', 'วันอังคาร', 'วันพุธ', 'วันพฤหัสบดี', 'วันศุกร์', 'วันเสาร์'];
+                
+                dayOfWeekStr = `${dayNamesShort[dayIndex]} (${dayNamesThai[dayIndex]})`;
 
-                const d = String(fuDate.getDate()).padStart(2, '0');
-                const m = String(fuDate.getMonth() + 1).padStart(2, '0');
-                const y = fuDate.getFullYear() + 543;
-                const yShort = String(y).slice(-2);
-                fuDateStr = `${d}/${m}/${yShort}`;
+                const day = fuDate.getDate();
+                const monthText = thaiMonths[fuDate.getMonth()];
+                const monthNum = String(fuDate.getMonth() + 1).padStart(2, '0');
+                const yearBE = fuDate.getFullYear() + 543;
+                const yearBEShort = String(yearBE).slice(-2);
+                const dayPadded = String(day).padStart(2, '0');
+
+                // Format: 31 ก.ค. 2569 (31/07/69)
+                fuDateStr = `${day} ${monthText} ${yearBE} (${dayPadded}/${monthNum}/${yearBEShort})`;
+
+                // Weekend Check (0 = Sun, 6 = Sat)
+                if (dayIndex === 0 || dayIndex === 6) {
+                    warningBox.classList.remove('hidden');
+                    warningText.innerText = `ตรงกับวันหยุด (${dayNamesThai[dayIndex]}) กรุณาเลื่อนวันนัด!`;
+                } else {
+                    warningBox.classList.add('hidden');
+                }
             }
 
-            const cartridgeCalc = totalUnits / 300;
+            // 2. Cartridge (A / 300)
+            const cartridgeCalc = totalUnitsA / 300;
             const cartridgeNet = Math.ceil(cartridgeCalc);
 
-            const vialCalc = totalUnits / 1000;
+            // 3. Vial (A / 1000)
+            const vialCalc = totalUnitsA / 1000;
             const vialNet = Math.ceil(vialCalc);
 
-            let activeDosesPerDay = 0;
-            if (morningDose > 0) activeDosesPerDay++;
-            if (eveningDose > 0) activeDosesPerDay++;
-
+            // 4. Needle Pen = วันนัด / 2 (ปัดขึ้น)
             const penNeedleCount = Math.ceil(fuDays / 2);
-            const syringeCount = fuDays * activeDosesPerDay;
 
-            const totalAlcBalls = fuDays * activeDosesPerDay * 2;
-            const alc8Bags = Math.ceil(totalAlcBalls / 8);
-            const alc10Bags = Math.ceil(totalAlcBalls / 10);
+            // 5. Syringe = วันนัด (ไม่ต้องหาร)
+            const syringeCount = fuDays;
 
+            // 6. Alcohol Cotton Ball (#8 = วันนัด/4, #10 = วันนัด/5)
+            const alc8Bags = Math.ceil(fuDays / 4);
+            const alc10Bags = Math.ceil(fuDays / 5);
+
+            // Render Results
             document.getElementById('res-fu-date').innerText = fuDateStr;
             document.getElementById('res-fu-day').innerText = dayOfWeekStr;
 
