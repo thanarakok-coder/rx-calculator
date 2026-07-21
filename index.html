@@ -3,28 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medical Dosing & Clinical Tools</title>
+    <title>Rx Calc Tools</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700;800&display=swap');
         body {
             font-family: 'Sarabun', sans-serif;
-            background-color: #f8fafc;
+            background-color: #f1f5f9;
+        }
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            opacity: 1;
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col text-slate-800">
 
     <!-- Header Navigation -->
-    <header class="bg-teal-700 text-white shadow-md sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+    <header class="bg-slate-900 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="showPage('home')">
-                <i class="fa-solid fa-calculator text-2xl text-teal-200"></i>
+                <i class="fa-solid fa-calculator text-2xl text-teal-400"></i>
                 <span class="font-bold text-xl tracking-wide">Rx Calc Tools</span>
             </div>
-            <button id="btn-home" onclick="showPage('home')" class="hidden bg-teal-800 hover:bg-teal-900 text-white px-4 py-2 rounded-lg text-sm font-medium transition duration-200 flex items-center space-x-2 border border-teal-600">
+            <button id="btn-home" onclick="showPage('home')" class="hidden bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition border border-slate-700 flex items-center space-x-2">
                 <i class="fa-solid fa-house"></i>
                 <span>หน้าหลัก</span>
             </button>
@@ -32,208 +36,307 @@
     </header>
 
     <!-- Main Container -->
-    <main class="flex-grow max-w-6xl w-full mx-auto p-4 md:p-6">
+    <main class="flex-grow max-w-7xl w-full mx-auto p-3 md:p-6">
 
         <!-- ================= HOME PAGE ================= -->
         <section id="page-home" class="space-y-6">
-            <div class="text-center py-6 bg-white rounded-2xl shadow-sm border border-slate-200">
-                <h1 class="text-2xl md:text-3xl font-bold text-slate-800">เครื่องมือช่วยคำนวณเวชปฏิบัติ</h1>
-                <p class="text-slate-500 mt-2 text-sm md:text-base">คำนวณแบบใช้งานทันที ไม่บันทึกข้อมูล ปลอดภัย และสะดวกรวดเร็ว</p>
+            <div class="text-center py-8 bg-white rounded-2xl shadow-sm border border-slate-200">
+                <h1 class="text-2xl md:text-3xl font-extrabold text-slate-800">เครื่องมือช่วยคำนวณเวชปฏิบัติ</h1>
+                <p class="text-slate-500 mt-2 text-sm md:text-base">คำนวณรวดเร็ว เน้นรูปภาพ ใช้งานง่าย ไม่เก็บข้อมูล</p>
             </div>
 
             <!-- Thumbnail Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Tool 1: Insulin -->
-                <div onclick="showPage('insulin')" class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-200 cursor-pointer overflow-hidden group flex flex-col justify-between">
+                <div onclick="showPage('insulin')" class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-200 cursor-pointer overflow-hidden group border-t-4 border-t-blue-600">
                     <div class="p-6">
-                        <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">
+                        <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-syringe"></i>
                         </div>
-                        <span class="bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-md border border-emerald-200">พร้อมใช้งาน</span>
-                        <h3 class="text-lg font-bold text-slate-800 mt-2 group-hover:text-emerald-600 transition-colors">1. คำนวณ Insulin & อุปกรณ์</h3>
-                        <p class="text-slate-500 text-sm mt-2 leading-relaxed">คำนวณปริมาณยาทั้ง 2 มื้อ, จำนวนวันนัด, วันในสัปดาห์, ยา Penfill/Vial, เข็ม และ Alcohol Cotton Ball</p>
-                    </div>
-                    <div class="px-6 py-3 bg-slate-50 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-emerald-600">
-                        <span>เปิดใช้งาน</span>
-                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-md">พร้อมใช้งาน</span>
+                        <h3 class="text-xl font-extrabold text-slate-800 mt-2 group-hover:text-blue-600">1. Insulin 'n TB (Insulin Calc)</h3>
+                        <p class="text-slate-500 text-sm mt-2">คำนวณปริมาณยาฉีด, อุปกรณ์ Syringe / Pen Needle / Alc. Ball และวันนัด</p>
                     </div>
                 </div>
 
-                <!-- Tool 2: TB Dosing (Coming Soon) -->
-                <div class="bg-slate-50 rounded-2xl border border-slate-200 opacity-60 flex flex-col justify-between">
-                    <div class="p-6">
-                        <div class="w-14 h-14 bg-slate-200 text-slate-500 rounded-xl flex items-center justify-center mb-4 text-2xl">
-                            <i class="fa-solid fa-capsules"></i>
-                        </div>
-                        <span class="bg-slate-200 text-slate-600 text-xs font-semibold px-2.5 py-1 rounded-md">กำลังพัฒนา</span>
-                        <h3 class="text-lg font-bold text-slate-700 mt-2">2. คำนวณขนาดยาวัณโรค (TB)</h3>
-                        <p class="text-slate-500 text-sm mt-2 leading-relaxed">คำนวณช่วงขนาดยาตามน้ำหนักตัว (H, R, Z, E, S) พร้อมคำแนะนำกรณี eGFR < 30 ml/min</p>
+                <!-- Tool 2: TB Dosing -->
+                <div class="bg-slate-50 rounded-2xl border border-slate-200 opacity-60 p-6">
+                    <div class="w-14 h-14 bg-slate-200 text-slate-500 rounded-xl flex items-center justify-center mb-4 text-2xl">
+                        <i class="fa-solid fa-capsules"></i>
                     </div>
-                    <div class="px-6 py-3 bg-slate-100 border-t border-slate-200 text-xs text-slate-400">
-                        รอเปิดใช้งานในระยะถัดไป
-                    </div>
+                    <span class="bg-slate-200 text-slate-600 text-xs font-bold px-2.5 py-1 rounded-md">กำลังพัฒนา</span>
+                    <h3 class="text-xl font-bold text-slate-700 mt-2">2. TB Dosing Calc</h3>
+                    <p class="text-slate-500 text-sm mt-2">คำนวณยาวัณโรคตาม BW & eGFR</p>
                 </div>
 
-                <!-- Tool 3: Favipiravir (Coming Soon) -->
-                <div class="bg-slate-50 rounded-2xl border border-slate-200 opacity-60 flex flex-col justify-between">
-                    <div class="p-6">
-                        <div class="w-14 h-14 bg-slate-200 text-slate-500 rounded-xl flex items-center justify-center mb-4 text-2xl">
-                            <i class="fa-solid fa-pills"></i>
-                        </div>
-                        <span class="bg-slate-200 text-slate-600 text-xs font-semibold px-2.5 py-1 rounded-md">กำลังพัฒนา</span>
-                        <h3 class="text-lg font-bold text-slate-700 mt-2">3. คำนวณยา Favipiravir</h3>
-                        <p class="text-slate-500 text-sm mt-2 leading-relaxed">คำนวณปริมาณยารวมทั้งคอร์ส แยกตาม Day 1 และ Day 2-5 ปัดขึ้นตามเงื่อนไขทางคลินิก</p>
+                <!-- Tool 3: Favipiravir -->
+                <div class="bg-slate-50 rounded-2xl border border-slate-200 opacity-60 p-6">
+                    <div class="w-14 h-14 bg-slate-200 text-slate-500 rounded-xl flex items-center justify-center mb-4 text-2xl">
+                        <i class="fa-solid fa-pills"></i>
                     </div>
-                    <div class="px-6 py-3 bg-slate-100 border-t border-slate-200 text-xs text-slate-400">
-                        รอเปิดใช้งานในระยะถัดไป
-                    </div>
+                    <span class="bg-slate-200 text-slate-600 text-xs font-bold px-2.5 py-1 rounded-md">กำลังพัฒนา</span>
+                    <h3 class="text-xl font-bold text-slate-700 mt-2">3. Favipiravir Calc</h3>
+                    <p class="text-slate-500 text-sm mt-2">คำนวณยา Favipiravir ต่อคอร์ส</p>
                 </div>
             </div>
         </section>
 
         <!-- ================= TOOL 1: INSULIN PAGE ================= -->
-        <section id="page-insulin" class="hidden space-y-6">
-            <!-- Header Title -->
-            <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-syringe"></i>
-                    </div>
+        <section id="page-insulin" class="hidden space-y-4">
+            
+            <!-- Main Grid Layout (Matching Spreadsheet style) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
+                
+                <!-- Left Panel: Input & F/U Date -->
+                <div class="lg:col-span-4 bg-white rounded-2xl shadow-md border-2 border-slate-800 overflow-hidden flex flex-col justify-between min-h-[500px]">
                     <div>
-                        <h2 class="text-xl font-bold text-slate-800">โปรแกรมคำนวณ Insulin & อุปกรณ์ฉีดยา</h2>
-                        <p class="text-xs text-slate-500">คำนวณปริมาณยาทั้งหมด วันนัดถัดไป และจำนวนอุปกรณ์สำลี/เข็มฉีด</p>
+                        <!-- Header Input -->
+                        <div class="bg-slate-900 text-white p-3 text-center flex justify-between items-center">
+                            <span class="text-xl font-black tracking-wider text-amber-400">กรอก <i class="fa-solid fa-circle-arrow-down text-emerald-400"></i></span>
+                            <button onclick="resetInsulinForm()" class="text-xs bg-slate-800 hover:bg-slate-700 px-2 py-1 rounded text-slate-300 border border-slate-700">
+                                <i class="fa-solid fa-arrow-rotate-right"></i> รีเซ็ต
+                            </button>
+                        </div>
+
+                        <!-- Input Fields -->
+                        <div class="p-4 space-y-3 bg-black text-white">
+                            <!-- Morning -->
+                            <div class="flex items-center justify-between gap-2">
+                                <label class="text-2xl font-black text-amber-400 w-20">เช้า</label>
+                                <input type="number" id="ins-morning" value="28" min="0" step="1" 
+                                    onkeydown="handleEnterKey(event, 'ins-evening')" oninput="calculateInsulin()"
+                                    class="w-28 text-center text-3xl font-black bg-white text-amber-600 rounded-lg p-1 border-2 border-amber-400 focus:outline-none focus:ring-4 focus:ring-amber-300">
+                                <span class="text-sm text-slate-300 font-semibold">Unit(s)</span>
+                            </div>
+
+                            <!-- Evening -->
+                            <div class="flex items-center justify-between gap-2">
+                                <label class="text-2xl font-black text-emerald-400 w-20">เย็น</label>
+                                <input type="number" id="ins-evening" value="16" min="0" step="1" 
+                                    onkeydown="handleEnterKey(event, 'ins-fu-days')" oninput="calculateInsulin()"
+                                    class="w-28 text-center text-3xl font-black bg-white text-emerald-600 rounded-lg p-1 border-2 border-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-300">
+                                <span class="text-sm text-slate-300 font-semibold">Unit(s)</span>
+                            </div>
+
+                            <!-- F/U Days -->
+                            <div class="flex items-center justify-between gap-2">
+                                <label class="text-2xl font-black text-sky-400 w-20">F/U</label>
+                                <input type="number" id="ins-fu-days" value="61" min="1" step="1" 
+                                    onkeydown="handleEnterKey(event, 'ins-start-date')" oninput="calculateInsulin()"
+                                    class="w-28 text-center text-3xl font-black bg-white text-sky-600 rounded-lg p-1 border-2 border-sky-400 focus:outline-none focus:ring-4 focus:ring-sky-300">
+                                <span class="text-sm text-slate-300 font-semibold">Day(s)</span>
+                            </div>
+
+                            <!-- Start Date -->
+                            <div class="pt-2 border-t border-slate-800 flex items-center justify-between">
+                                <label class="text-xs text-slate-400">วันเริ่มคำนวณ:</label>
+                                <input type="date" id="ins-start-date" onchange="calculateInsulin()" 
+                                    class="text-xs bg-slate-800 text-white rounded px-2 py-1 border border-slate-700">
+                            </div>
+                        </div>
+
+                        <!-- Option Toggle for Alc Ball -->
+                        <div class="p-3 bg-slate-100 border-t border-b border-slate-200">
+                            <label class="block text-xs font-bold text-slate-600 mb-1 text-center">ตัวเลือกขนาด Alcohol Cotton Ball</label>
+                            <div class="grid grid-cols-3 gap-1 text-xs font-bold">
+                                <button id="btn-alc-all" onclick="setAlcMode('all')" class="py-1.5 rounded bg-blue-600 text-white shadow">แสดงทั้งคู่</button>
+                                <button id="btn-alc-8" onclick="setAlcMode('8')" class="py-1.5 rounded bg-white text-slate-700 border hover:bg-slate-50">เฉพาะ #8</button>
+                                <button id="btn-alc-10" onclick="setAlcMode('10')" class="py-1.5 rounded bg-white text-slate-700 border hover:bg-slate-50">เฉพาะ #10</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- F/U Date Verification Box (Bottom Center) -->
+                    <div class="p-4 bg-amber-50 border-t-2 border-amber-300 text-center space-y-1">
+                        <span class="text-xs font-black text-amber-800 tracking-wider uppercase block bg-amber-200 py-0.5 rounded">next F/U (วันนัดถัดไป)</span>
+                        <div id="res-fu-date" class="text-3xl font-black text-slate-900">02/10/2567</div>
+                        <div id="res-fu-day" class="text-2xl font-black text-blue-700">Mon</div>
                     </div>
                 </div>
+
+                <!-- Right Panel: Penfill vs Vial Output Columns Side by Side -->
+                <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    
+                    <!-- COLUMN 1: PENFILL (Light Blue Background) -->
+                    <div class="bg-blue-50/90 rounded-2xl shadow-md border-2 border-blue-300 overflow-hidden flex flex-col justify-between p-4 space-y-4">
+                        <div>
+                            <!-- Header Penfill -->
+                            <div class="text-center border-b-2 border-blue-200 pb-2">
+                                <h3 class="text-3xl font-black text-blue-900">Penfill</h3>
+                                <div class="text-sm font-bold text-blue-700 mt-1 flex justify-center items-center gap-2">
+                                    <span>Calc:</span>
+                                    <span id="res-cartridge-calc" class="text-base text-blue-900 font-black bg-blue-100 px-2 py-0.5 rounded">8.95</span>
+                                    <span class="text-xs">Cartridge</span>
+                                </div>
+                            </div>
+
+                            <!-- List of Items -->
+                            <div class="mt-4 space-y-4">
+                                <!-- Cartridge Net -->
+                                <div class="flex items-center justify-between bg-white/80 p-2.5 rounded-xl border border-blue-200 shadow-sm">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-12 h-12 flex-shrink-0 bg-blue-100 rounded-lg flex items-center justify-center p-1">
+                                            <i class="fa-solid fa-capsules text-2xl text-blue-600"></i>
+                                        </div>
+                                        <span class="text-sm font-black text-slate-700">Cartridge</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <span id="res-cartridge-net" class="text-3xl font-black text-blue-900">9</span>
+                                        <span class="text-xs font-bold text-slate-500 block">หลอด</span>
+                                    </div>
+                                </div>
+
+                                <!-- Needle Pen -->
+                                <div class="flex items-center justify-between bg-white/80 p-2.5 rounded-xl border border-blue-200 shadow-sm">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-12 h-12 flex-shrink-0 bg-orange-100 rounded-lg flex items-center justify-center p-1">
+                                            <i class="fa-solid fa-vial-circle-check text-2xl text-orange-600"></i>
+                                        </div>
+                                        <span class="text-sm font-black text-slate-700">Needle Pen</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <span id="res-pen-needle" class="text-3xl font-black text-blue-900">31</span>
+                                        <span class="text-xs font-bold text-slate-500 block">ชิ้น</span>
+                                    </div>
+                                </div>
+
+                                <!-- Alc Ball #8 -->
+                                <div id="box-penfill-alc8" class="flex items-center justify-between bg-white/80 p-2.5 rounded-xl border border-blue-200 shadow-sm">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-12 h-12 flex-shrink-0 bg-slate-200 rounded-lg flex items-center justify-center p-1">
+                                            <i class="fa-solid fa-cubes-stacked text-2xl text-slate-600"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-sm font-black text-slate-700 block">Alc. Ball #8</span>
+                                            <span class="text-[10px] text-slate-500 font-semibold">(8 ก้อน/ถุง)</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <span id="res-penfill-alc8" class="text-3xl font-black text-blue-900">16</span>
+                                        <span class="text-xs font-bold text-slate-500 block">ถุง</span>
+                                    </div>
+                                </div>
+
+                                <!-- Alc Ball #10 -->
+                                <div id="box-penfill-alc10" class="flex items-center justify-between bg-white/80 p-2.5 rounded-xl border border-blue-200 shadow-sm">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-12 h-12 flex-shrink-0 bg-slate-200 rounded-lg flex items-center justify-center p-1">
+                                            <i class="fa-solid fa-boxes-packing text-2xl text-slate-600"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-sm font-black text-slate-700 block">Alc. Ball #10</span>
+                                            <span class="text-[10px] text-slate-500 font-semibold">(10 ก้อน/ถุง)</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <span id="res-penfill-alc10" class="text-3xl font-black text-blue-900">13</span>
+                                        <span class="text-xs font-bold text-slate-500 block">ถุง</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COLUMN 2: VIAL (Light Amber Background) -->
+                    <div class="bg-amber-50/90 rounded-2xl shadow-md border-2 border-amber-300 overflow-hidden flex flex-col justify-between p-4 space-y-4">
+                        <div>
+                            <!-- Header Vial -->
+                            <div class="text-center border-b-2 border-amber-200 pb-2">
+                                <h3 class="text-3xl font-black text-amber-900">Vial</h3>
+                                <div class="text-sm font-bold text-amber-700 mt-1 flex justify-center items-center gap-2">
+                                    <span>Calc:</span>
+                                    <span id="res-vial-calc" class="text-base text-amber-900 font-black bg-amber-100 px-2 py-0.5 rounded">2.68</span>
+                                    <span class="text-xs">Vial(s)</span>
+                                </div>
+                            </div>
+
+                            <!-- List of Items -->
+                            <div class="mt-4 space-y-4">
+                                <!-- Vial Net -->
+                                <div class="flex items-center justify-between bg-white/80 p-2.5 rounded-xl border border-amber-200 shadow-sm">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-12 h-12 flex-shrink-0 bg-amber-100 rounded-lg flex items-center justify-center p-1">
+                                            <i class="fa-solid fa-flask text-2xl text-amber-600"></i>
+                                        </div>
+                                        <span class="text-sm font-black text-slate-700">Vial(s)</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <span id="res-vial-net" class="text-3xl font-black text-amber-900">3</span>
+                                        <span class="text-xs font-bold text-slate-500 block">ขวด</span>
+                                    </div>
+                                </div>
+
+                                <!-- Syringe -->
+                                <div class="flex items-center justify-between bg-white/80 p-2.5 rounded-xl border border-amber-200 shadow-sm">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-12 h-12 flex-shrink-0 bg-teal-100 rounded-lg flex items-center justify-center p-1">
+                                            <i class="fa-solid fa-syringe text-2xl text-teal-600"></i>
+                                        </div>
+                                        <span class="text-sm font-black text-slate-700">Syringe</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <span id="res-syringe" class="text-3xl font-black text-amber-900">61</span>
+                                        <span class="text-xs font-bold text-slate-500 block">ชิ้น</span>
+                                    </div>
+                                </div>
+
+                                <!-- Alc Ball #8 -->
+                                <div id="box-vial-alc8" class="flex items-center justify-between bg-white/80 p-2.5 rounded-xl border border-amber-200 shadow-sm">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-12 h-12 flex-shrink-0 bg-slate-200 rounded-lg flex items-center justify-center p-1">
+                                            <i class="fa-solid fa-cubes-stacked text-2xl text-slate-600"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-sm font-black text-slate-700 block">Alc. Ball #8</span>
+                                            <span class="text-[10px] text-slate-500 font-semibold">(8 ก้อน/ถุง)</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <span id="res-vial-alc8" class="text-3xl font-black text-amber-900">16</span>
+                                        <span class="text-xs font-bold text-slate-500 block">ถุง</span>
+                                    </div>
+                                </div>
+
+                                <!-- Alc Ball #10 -->
+                                <div id="box-vial-alc10" class="flex items-center justify-between bg-white/80 p-2.5 rounded-xl border border-amber-200 shadow-sm">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-12 h-12 flex-shrink-0 bg-slate-200 rounded-lg flex items-center justify-center p-1">
+                                            <i class="fa-solid fa-boxes-packing text-2xl text-slate-600"></i>
+                                        </div>
+                                        <div>
+                                            <span class="text-sm font-black text-slate-700 block">Alc. Ball #10</span>
+                                            <span class="text-[10px] text-slate-500 font-semibold">(10 ก้อน/ถุง)</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <span id="res-vial-alc10" class="text-3xl font-black text-amber-900">13</span>
+                                        <span class="text-xs font-bold text-slate-500 block">ถุง</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <!-- Input Panel -->
-                <div class="lg:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-                    <h3 class="text-base font-bold text-slate-800 border-b pb-2 flex items-center justify-between">
-                        <span><i class="fa-regular fa-pen-to-square text-emerald-600 mr-2"></i>ระบุข้อมูลการใช้ยา</span>
-                        <button onclick="resetInsulinForm()" class="text-xs text-slate-400 hover:text-rose-500 transition-colors">
-                            <i class="fa-solid fa-rotate-right mr-1"></i>รีเซ็ต
-                        </button>
-                    </h3>
-
-                    <!-- Morning Dose -->
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">มื้อเช้า (Unit)</label>
-                        <input type="number" id="ins-morning" min="0" step="1" value="28" oninput="calculateInsulin()"
-                            class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none text-slate-800 font-semibold">
-                    </div>
-
-                    <!-- Evening Dose -->
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">มื้อเย็น (Unit)</label>
-                        <input type="number" id="ins-evening" min="0" step="1" value="16" oninput="calculateInsulin()"
-                            class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none text-slate-800 font-semibold">
-                    </div>
-
-                    <!-- Follow up Days -->
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">จำนวนวันนัด (Days)</label>
-                        <input type="number" id="ins-fu-days" min="1" step="1" value="61" oninput="calculateInsulin()"
-                            class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none text-slate-800 font-semibold">
-                    </div>
-
-                    <!-- Start Date -->
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">วันที่เริ่มต้นคำนวณ</label>
-                        <input type="date" id="ins-start-date" onchange="calculateInsulin()"
-                            class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none text-slate-800 font-medium">
-                    </div>
-                </div>
-
-                <!-- Result Panel -->
-                <div class="lg:col-span-7 space-y-6">
-                    <!-- Summary Card 1: F/U Date & Total Units -->
-                    <div class="bg-emerald-800 text-white p-6 rounded-2xl shadow-sm space-y-4">
-                        <div class="grid grid-cols-2 gap-4 divide-x divide-emerald-700">
-                            <div>
-                                <span class="text-xs text-emerald-200 block">วันนัดถัดไป (Next F/U)</span>
-                                <span id="res-fu-date" class="text-2xl font-bold mt-1 block">-</span>
-                                <span id="res-fu-day" class="text-xs bg-emerald-700 px-2.5 py-0.5 rounded-full inline-block mt-1 text-emerald-100">-</span>
-                            </div>
-                            <div class="pl-4">
-                                <span class="text-xs text-emerald-200 block">ขนาดยารวมต่อวัน / ทั้งหมด</span>
-                                <span id="res-daily-units" class="text-2xl font-bold mt-1 block">0 <span class="text-xs font-normal">Unit/day</span></span>
-                                <span id="res-total-units" class="text-xs text-emerald-200 block mt-1">รวมทั้งหมด: 0 Units</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Summary Card 2: Penfill vs Vial Calculation -->
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4">
-                        <h4 class="text-sm font-bold text-slate-800 border-b pb-2">ผลคำนวณรูปแบบยา & เข็มฉีด</h4>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <!-- Penfill / Cartridge -->
-                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-xs font-bold text-slate-700"><i class="fa-solid fa-pen-nib text-emerald-600 mr-1"></i>Penfill (300 Units/หลอด)</span>
-                                </div>
-                                <div class="text-xl font-bold text-emerald-700" id="res-cartridge-net">0 <span class="text-xs text-slate-500 font-normal">หลอด (สุทธิ)</span></div>
-                                <div class="text-xs text-slate-500" id="res-cartridge-calc">คำนวณจริง: 0.00 หลอด</div>
-                                <div class="text-xs text-slate-600 pt-1 border-t border-slate-200 flex justify-between">
-                                    <span>เข็ม Pen Needle:</span>
-                                    <span id="res-pen-needle" class="font-bold text-slate-800">0 ชิ้น</span>
-                                </div>
-                            </div>
-
-                            <!-- Vial -->
-                            <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-xs font-bold text-slate-700"><i class="fa-solid fa-vial text-sky-600 mr-1"></i>Vial (1,000 Units/ขวด)</span>
-                                </div>
-                                <div class="text-xl font-bold text-sky-700" id="res-vial-net">0 <span class="text-xs text-slate-500 font-normal">ขวด (สุทธิ)</span></div>
-                                <div class="text-xs text-slate-500" id="res-vial-calc">คำนวณจริง: 0.00 ขวด</div>
-                                <div class="text-xs text-slate-600 pt-1 border-t border-slate-200 flex justify-between">
-                                    <span>Syringe ฉีดยา:</span>
-                                    <span id="res-syringe" class="font-bold text-slate-800">0 ชิ้น</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Alcohol Cotton Ball -->
-                        <div class="p-4 bg-amber-50 rounded-xl border border-amber-200 space-y-2">
-                            <div class="text-xs font-bold text-amber-800 flex items-center justify-between">
-                                <span><i class="fa-solid fa-[#f59e0b] fa-pump-medical text-amber-600 mr-1"></i>สำลีชุบแอลกอฮอล์ (Alcohol Cotton Ball)</span>
-                                <span class="text-[10px] bg-amber-200 text-amber-800 px-2 py-0.5 rounded">2 ก้อน/มื้อ</span>
-                            </div>
-                            <div class="grid grid-cols-2 gap-2 text-xs">
-                                <div>
-                                    <span class="text-slate-600">ถุงขนาด 8 ก้อน (#8):</span>
-                                    <span id="res-alc-8" class="font-bold text-amber-900 block text-sm">0 ถุง</span>
-                                </div>
-                                <div>
-                                    <span class="text-slate-600">ถุงขนาด 10 ก้อน (#10):</span>
-                                    <span id="res-alc-10" class="font-bold text-amber-900 block text-sm">0 ถุง</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-slate-100 border-t border-slate-200 text-center py-4 text-xs text-slate-500">
-        <p>Medical Calculation Tool — Stateless & Non-persistent Data Application</p>
-    </footer>
-
     <!-- JavaScript Logic -->
     <script>
-        // Set Default Date to Today
+        let alcMode = 'all'; 
+
         document.addEventListener('DOMContentLoaded', () => {
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('ins-start-date').value = today;
             calculateInsulin();
         });
 
-        // Navigation Controller
         function showPage(pageId) {
             const homePage = document.getElementById('page-home');
             const insulinPage = document.getElementById('page-insulin');
@@ -250,17 +353,75 @@
             }
         }
 
-        // Reset Form
+        function handleEnterKey(event, nextId) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                const nextElement = document.getElementById(nextId);
+                if (nextElement) {
+                    nextElement.focus();
+                    if (nextElement.type === 'number' || nextElement.type === 'text') {
+                        nextElement.select();
+                    }
+                }
+            }
+        }
+
+        function setAlcMode(mode) {
+            alcMode = mode;
+            
+            const btnAll = document.getElementById('btn-alc-all');
+            const btn8 = document.getElementById('btn-alc-8');
+            const btn10 = document.getElementById('btn-alc-10');
+
+            [btnAll, btn8, btn10].forEach(btn => {
+                btn.className = "py-1.5 rounded bg-white text-slate-700 border hover:bg-slate-50";
+            });
+
+            if (mode === 'all') {
+                btnAll.className = "py-1.5 rounded bg-blue-600 text-white shadow";
+            } else if (mode === '8') {
+                btn8.className = "py-1.5 rounded bg-blue-600 text-white shadow";
+            } else if (mode === '10') {
+                btn10.className = "py-1.5 rounded bg-blue-600 text-white shadow";
+            }
+
+            updateAlcVisibility();
+        }
+
+        function updateAlcVisibility() {
+            const penfillAlc8 = document.getElementById('box-penfill-alc8');
+            const penfillAlc10 = document.getElementById('box-penfill-alc10');
+            const vialAlc8 = document.getElementById('box-vial-alc8');
+            const vialAlc10 = document.getElementById('box-vial-alc10');
+
+            if (alcMode === 'all') {
+                penfillAlc8.classList.remove('hidden');
+                penfillAlc10.classList.remove('hidden');
+                vialAlc8.classList.remove('hidden');
+                vialAlc10.classList.remove('hidden');
+            } else if (alcMode === '8') {
+                penfillAlc8.classList.remove('hidden');
+                penfillAlc10.classList.add('hidden');
+                vialAlc8.classList.remove('hidden');
+                vialAlc10.classList.add('hidden');
+            } else if (alcMode === '10') {
+                penfillAlc8.classList.add('hidden');
+                penfillAlc10.classList.remove('hidden');
+                vialAlc8.classList.add('hidden');
+                vialAlc10.classList.remove('hidden');
+            }
+        }
+
         function resetInsulinForm() {
             document.getElementById('ins-morning').value = 28;
             document.getElementById('ins-evening').value = 16;
             document.getElementById('ins-fu-days').value = 61;
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('ins-start-date').value = today;
+            setAlcMode('all');
             calculateInsulin();
         }
 
-        // Calculation Logic for Insulin Module
         function calculateInsulin() {
             const morningDose = parseFloat(document.getElementById('ins-morning').value) || 0;
             const eveningDose = parseFloat(document.getElementById('ins-evening').value) || 0;
@@ -270,7 +431,6 @@
             const dailyDose = morningDose + eveningDose;
             const totalUnits = dailyDose * fuDays;
 
-            // 1. Calculate Next F/U Date and Day of Week
             let fuDateStr = '-';
             let dayOfWeekStr = '-';
             
@@ -279,54 +439,50 @@
                 const fuDate = new Date(startDate);
                 fuDate.setDate(startDate.getDate() + fuDays);
 
-                const dayNames = ['Sun (อาทิตย์)', 'Mon (จันทร์)', 'Tue (อังคาร)', 'Wed (พุธ)', 'Thu (พฤหัสบดี)', 'Fri (ศุกร์)', 'Sat (เสาร์)'];
+                const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
                 dayOfWeekStr = dayNames[fuDate.getDay()];
 
                 const d = String(fuDate.getDate()).padStart(2, '0');
                 const m = String(fuDate.getMonth() + 1).padStart(2, '0');
-                const y = fuDate.getFullYear() + 543; // Buddhist Era
-                fuDateStr = `${d}/${m}/${y}`;
+                const y = fuDate.getFullYear() + 543;
+                const yShort = String(y).slice(-2);
+                fuDateStr = `${d}/${m}/${yShort}`;
             }
 
-            // 2. Calculate Cartridge (Penfill: 300 U/cartridge) & Vial (1000 U/vial)
             const cartridgeCalc = totalUnits / 300;
             const cartridgeNet = Math.ceil(cartridgeCalc);
 
             const vialCalc = totalUnits / 1000;
             const vialNet = Math.ceil(vialCalc);
 
-            // 3. Syringe / Pen Needle count
-            // Active injection count per day
-            let dailyDoseCount = 0;
-            if (morningDose > 0) dailyDoseCount++;
-            if (eveningDose > 0) dailyDoseCount++;
+            let activeDosesPerDay = 0;
+            if (morningDose > 0) activeDosesPerDay++;
+            if (eveningDose > 0) activeDosesPerDay++;
 
-            // If Penfill -> Needle Pen (Usually changed every few days or per protocol, in sheet: fuDays for pen needle, or daily doses)
-            // Exact sheet matching formula: Needle Pen = fuDays (or daily count)
-            const penNeedleCount = fuDays * (dailyDoseCount > 0 ? 1 : 0); // Base calculation per protocol
-            const syringeCount = fuDays * dailyDoseCount; // Syringe for Vial
+            const penNeedleCount = Math.ceil(fuDays / 2);
+            const syringeCount = fuDays * activeDosesPerDay;
 
-            // 4. Alcohol Cotton Ball Calculation (2 balls per injection dose)
-            const totalAlcBalls = fuDays * dailyDoseCount * 2;
+            const totalAlcBalls = fuDays * activeDosesPerDay * 2;
             const alc8Bags = Math.ceil(totalAlcBalls / 8);
             const alc10Bags = Math.ceil(totalAlcBalls / 10);
 
-            // Update UI
             document.getElementById('res-fu-date').innerText = fuDateStr;
             document.getElementById('res-fu-day').innerText = dayOfWeekStr;
-            document.getElementById('res-daily-units').innerHTML = `${dailyDose} <span class="text-xs font-normal">Unit/day</span>`;
-            document.getElementById('res-total-units').innerText = `รวมทั้งหมด: ${totalUnits.toLocaleString()} Units (${fuDays} วัน)`;
 
-            document.getElementById('res-cartridge-net').innerHTML = `${cartridgeNet} <span class="text-xs text-slate-500 font-normal">หลอด</span>`;
-            document.getElementById('res-cartridge-calc').innerText = `คำนวณจริง: ${cartridgeCalc.toFixed(2)} หลอด`;
-            document.getElementById('res-pen-needle').innerText = `${penNeedleCount} ชิ้น`;
+            document.getElementById('res-cartridge-calc').innerText = cartridgeCalc.toFixed(2);
+            document.getElementById('res-cartridge-net').innerText = cartridgeNet;
+            document.getElementById('res-pen-needle').innerText = penNeedleCount;
 
-            document.getElementById('res-vial-net').innerHTML = `${vialNet} <span class="text-xs text-slate-500 font-normal">ขวด</span>`;
-            document.getElementById('res-vial-calc').innerText = `คำนวณจริง: ${vialCalc.toFixed(2)} ขวด`;
-            document.getElementById('res-syringe').innerText = `${syringeCount} ชิ้น`;
+            document.getElementById('res-vial-calc').innerText = vialCalc.toFixed(2);
+            document.getElementById('res-vial-net').innerText = vialNet;
+            document.getElementById('res-syringe').innerText = syringeCount;
 
-            document.getElementById('res-alc-8').innerText = `${alc8Bags} ถุง (${totalAlcBalls} ก้อน)`;
-            document.getElementById('res-alc-10').innerText = `${alc10Bags} ถุง (${totalAlcBalls} ก้อน)`;
+            document.getElementById('res-penfill-alc8').innerText = alc8Bags;
+            document.getElementById('res-penfill-alc10').innerText = alc10Bags;
+            document.getElementById('res-vial-alc8').innerText = alc8Bags;
+            document.getElementById('res-vial-alc10').innerText = alc10Bags;
+
+            updateAlcVisibility();
         }
     </script>
 </body>
