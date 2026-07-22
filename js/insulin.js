@@ -14,16 +14,24 @@ document.addEventListener('DOMContentLoaded', () => {
 function showPage(pageId) {
     const homePage = document.getElementById('page-home');
     const insulinPage = document.getElementById('page-insulin');
+    const tbPage = document.getElementById('page-tb');
     const btnHome = document.getElementById('btn-home');
 
+    // ซ่อนทุกหน้าก่อน
+    if (homePage) homePage.classList.add('hidden');
+    if (insulinPage) insulinPage.classList.add('hidden');
+    if (tbPage) tbPage.classList.add('hidden');
+
+    // เลือกเปิดหน้าที่กด
     if (pageId === 'home') {
-        homePage.classList.remove('hidden');
-        insulinPage.classList.add('hidden');
-        btnHome.classList.add('hidden');
+        if (homePage) homePage.classList.remove('hidden');
+        if (btnHome) btnHome.classList.add('hidden');
     } else if (pageId === 'insulin') {
-        homePage.classList.add('hidden');
-        insulinPage.classList.remove('hidden');
-        btnHome.classList.remove('hidden');
+        if (insulinPage) insulinPage.classList.remove('hidden');
+        if (btnHome) btnHome.classList.remove('hidden');
+    } else if (pageId === 'tb') {
+        if (tbPage) tbPage.classList.remove('hidden');
+        if (btnHome) btnHome.classList.remove('hidden');
     }
 }
 
