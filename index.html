@@ -56,7 +56,7 @@
                     <p class="text-slate-600 text-base font-semibold mt-2">คำนวณปริมาณยา, Needle Pen, Syringe, Alc. Ball และวันนัด</p>
                 </div>
 
-                <!-- Tool 2: TB Dosing (เปิดพร้อมใช้งานแล้ว) -->
+                <!-- Tool 2: TB Dosing -->
                 <div onclick="showPage('tb')" class="bg-white rounded-3xl shadow-md hover:shadow-2xl transition-all duration-300 border-4 border-teal-500 cursor-pointer overflow-hidden group p-6">
                     <div class="w-16 h-16 bg-teal-100 text-teal-600 rounded-2xl flex items-center justify-center mb-4 text-3xl group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-capsules"></i>
@@ -81,7 +81,6 @@
         <!-- ================= TOOL 1: INSULIN PAGE ================= -->
         <section id="page-insulin" class="hidden space-y-6">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                <!-- Left Panel: Input & F/U Date -->
                 <div class="lg:col-span-4 bg-white rounded-3xl shadow-xl border-4 border-slate-800 overflow-hidden flex flex-col justify-between">
                     <div>
                         <div class="bg-slate-900 text-white p-4 text-center flex justify-between items-center">
@@ -145,7 +144,6 @@
                     </div>
                 </div>
 
-                <!-- Right Panel: Penfill vs Vial -->
                 <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-sky-100/90 rounded-3xl shadow-xl border-4 border-sky-400 overflow-hidden flex flex-col justify-between p-5 space-y-4">
                         <div>
@@ -302,52 +300,53 @@
         <!-- ================= TOOL 2: TB DOSING PAGE ================= -->
         <section id="page-tb" class="hidden space-y-6">
             
-            <!-- Warning Banner eGFR < 30 -->
-            <div id="tb-egfr-banner" class="hidden bg-amber-500 text-white p-4 rounded-3xl shadow-lg border-4 border-amber-600 flex items-center justify-between animate-pulse">
-                <div class="flex items-center space-x-3">
-                    <i class="fa-solid fa-triangle-exclamation text-3xl text-yellow-200"></i>
-                    <div>
-                        <span class="text-xl font-black">ข้อควรระวัง: eGFR < 30 ml/min</span>
-                        <span class="block text-sm font-extrabold text-amber-100">ปรับการให้ยา Z, E, S, L, O เป็น 3 วัน / สัปดาห์ (3 days/week)</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Main Layout Grid -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                 
                 <!-- Input Panel (Left) -->
-                <div class="lg:col-span-4 bg-white rounded-3xl shadow-xl border-4 border-slate-800 overflow-hidden">
-                    <div class="bg-slate-900 text-white p-4 text-center flex justify-between items-center">
-                        <span class="text-2xl font-black text-teal-400">กรอกข้อมูล <i class="fa-solid fa-weight-scale text-emerald-400"></i></span>
-                        <button onclick="resetTBForm()" class="text-sm bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg text-slate-200 border border-slate-600 font-bold">
-                            <i class="fa-solid fa-arrow-rotate-right"></i> รีเซ็ต
-                        </button>
-                    </div>
+                <div class="lg:col-span-4 space-y-4">
+                    <div class="bg-white rounded-3xl shadow-xl border-4 border-slate-800 overflow-hidden">
+                        <div class="bg-slate-900 text-white p-4 text-center flex justify-between items-center">
+                            <span class="text-2xl font-black text-teal-400">กรอกข้อมูล <i class="fa-solid fa-weight-scale text-emerald-400"></i></span>
+                            <button onclick="resetTBForm()" class="text-sm bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg text-slate-200 border border-slate-600 font-bold">
+                                <i class="fa-solid fa-arrow-rotate-right"></i> รีเซ็ต
+                            </button>
+                        </div>
 
-                    <div class="p-6 space-y-6 bg-slate-950 text-white">
-                        <!-- Weight Input -->
-                        <div>
-                            <label class="block text-xl font-black text-emerald-400 mb-2">น้ำหนักตัว (Body Weight)</label>
-                            <div class="flex items-center space-x-3">
-                                <input type="number" id="tb-bw" value="" placeholder="0" min="0" step="0.01"
-                                    class="w-full text-center text-4xl font-black bg-white text-teal-700 rounded-2xl p-3 border-4 border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-300">
-                                <span class="text-2xl text-slate-300 font-black">Kg</span>
+                        <div class="p-6 space-y-6 bg-slate-950 text-white">
+                            <!-- Weight Input -->
+                            <div>
+                                <label class="block text-xl font-black text-emerald-400 mb-2">น้ำหนักตัว (Body Weight)</label>
+                                <div class="flex items-center space-x-3">
+                                    <input type="number" id="tb-bw" value="" placeholder="0" min="0" step="0.01"
+                                        class="w-full text-center text-4xl font-black bg-white text-teal-700 rounded-2xl p-3 border-4 border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-300">
+                                    <span class="text-2xl text-slate-300 font-black">Kg</span>
+                                </div>
+                            </div>
+
+                            <!-- Checkbox eGFR < 30 -->
+                            <div class="pt-4 border-t border-slate-800">
+                                <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-2xl bg-slate-900 hover:bg-slate-800 border-2 border-slate-700 transition">
+                                    <input type="checkbox" id="tb-egfr-check" class="w-6 h-6 text-teal-500 rounded focus:ring-teal-400 border-gray-300">
+                                    <span class="text-lg font-black text-amber-400">eGFR < 30 ml/min</span>
+                                </label>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Checkbox eGFR < 30 -->
-                        <div class="pt-4 border-t border-slate-800">
-                            <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-2xl bg-slate-900 hover:bg-slate-800 border-2 border-slate-700 transition">
-                                <input type="checkbox" id="tb-egfr-check" class="w-6 h-6 text-teal-500 rounded focus:ring-teal-400 border-gray-300">
-                                <span class="text-lg font-black text-amber-400">eGFR < 30 ml/min</span>
-                            </label>
+                    <!-- [ข้อ 1] ย้ายกล่องเตือน eGFR มาไว้ฝั่งซ้าย สีแดงสด Text ขาว Contrast สูง อ่านง่ายชัดเจน -->
+                    <div id="tb-egfr-banner" class="hidden bg-red-600 text-white p-5 rounded-3xl shadow-xl border-4 border-red-700 space-y-2">
+                        <div class="flex items-center space-x-3 border-b border-red-400 pb-2">
+                            <i class="fa-solid fa-triangle-exclamation text-3xl text-yellow-300 flex-shrink-0"></i>
+                            <span class="text-xl font-black leading-tight">ข้อควรระวัง: eGFR < 30 ml/min</span>
                         </div>
+                        <p class="text-base font-bold leading-relaxed text-red-50 pt-1">
+                            ปรับการให้ยา <span class="bg-white text-red-700 font-black px-2 py-0.5 rounded">Z, E, S, L, O</span> เป็น <span class="underline font-black text-yellow-300">3 วัน / สัปดาห์</span> (3 days/week)
+                        </p>
                     </div>
                 </div>
 
-                <!-- Dosing Table Panel (Right - ตามสไตล์รูปแนบ) -->
-                <div class="lg:col-span-8 bg-white rounded-3xl shadow-xl border-4 border-slate-800 overflow-hidden p-4 md:p-6">
+                <!-- Dosing Table Panel (Right) -->
+                <div class="lg:col-span-8 bg-white rounded-3xl shadow-xl border-4 border-slate-800 overflow-hidden p-4 md:p-6 space-y-4">
                     <div class="overflow-x-auto">
                         <table class="w-full text-center border-collapse">
                             <thead>
@@ -458,9 +457,19 @@
                     </div>
 
                     <!-- Note อ้างอิงใต้ตาราง -->
-                    <div class="mt-4 pt-3 border-t border-slate-200 text-xs font-semibold text-slate-500 space-y-1">
+                    <div class="pt-3 border-t border-slate-200 text-xs font-semibold text-slate-500 space-y-1">
                         <p>* <strong>Ofloxacin:</strong> ปัจจุบันไม่ค่อยแนะนำแล้วในแนวทางปฏิบัติต่างๆ</p>
-                        <p><strong>สูตรอ้างอิง:</strong> H (5 mg/kg, 4–6), R (10 mg/kg, 8–12), Z (25 mg/kg, 20–30), E (15 mg/kg, 15–20), S (15 mg/kg, 12–20), L (Fixed 750 mg, Range 15–20 mg/kg, Max 1,000 mg), O (10 mg/kg, 7.5–15)</p>
+                        <p><strong>Max Dose Cap:</strong> H (300 mg), R (600 mg), Z (2,000 mg), E (1,600 mg), L (1,000 mg)</p>
+                    </div>
+
+                    <!-- [ข้อ 3] เพิ่มช่องทางหาเครื่องมือเพิ่มเติม (เช่น กรณีเด็ก) -->
+                    <div class="pt-2">
+                        <a href="https://rx-yrih-ntp-2021-tpt-2023-pmdt-2024-583480923268.us-west1.run.app/" target="_blank" rel="noopener noreferrer" 
+                           class="w-full bg-teal-50 hover:bg-teal-100 border-2 border-teal-500 text-teal-800 p-3 rounded-2xl font-black flex items-center justify-center space-x-2 transition shadow-sm group">
+                            <i class="fa-solid fa-child-rearing text-xl text-teal-600 group-hover:scale-110 transition-transform"></i>
+                            <span>ค้นหาเครื่องมือคำนวณ TB Dosing เพิ่มเติม (กรณีเด็ก / แนวทางอื่นๆ)</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-sm text-teal-600"></i>
+                        </a>
                     </div>
 
                 </div>
