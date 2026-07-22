@@ -95,12 +95,12 @@
                             </button>
                         </div>
 
-                        <!-- Input Fields -->
+                        <!-- Input Fields (ตั้งค่าเริ่มต้นเป็นว่างเปล่า value="") -->
                         <div class="p-5 space-y-4 bg-slate-950 text-white">
                             <!-- Morning -->
                             <div class="flex items-center justify-between gap-2">
                                 <label class="text-3xl font-black text-amber-400 w-24">เช้า</label>
-                                <input type="number" id="ins-morning" value="28" min="0" step="1" 
+                                <input type="number" id="ins-morning" value="" placeholder="0" min="0" step="1" 
                                     onkeydown="handleEnterKey(event, 'ins-evening')" oninput="calculateInsulin()"
                                     class="w-32 text-center text-4xl font-black bg-white text-amber-600 rounded-xl p-2 border-4 border-amber-400 focus:outline-none focus:ring-4 focus:ring-amber-300">
                                 <span class="text-lg text-slate-300 font-extrabold">Unit</span>
@@ -109,7 +109,7 @@
                             <!-- Evening -->
                             <div class="flex items-center justify-between gap-2">
                                 <label class="text-3xl font-black text-emerald-400 w-24">เย็น</label>
-                                <input type="number" id="ins-evening" value="16" min="0" step="1" 
+                                <input type="number" id="ins-evening" value="" placeholder="0" min="0" step="1" 
                                     onkeydown="handleEnterKey(event, 'ins-fu-days')" oninput="calculateInsulin()"
                                     class="w-32 text-center text-4xl font-black bg-white text-emerald-600 rounded-xl p-2 border-4 border-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-300">
                                 <span class="text-lg text-slate-300 font-extrabold">Unit</span>
@@ -118,7 +118,7 @@
                             <!-- F/U Days -->
                             <div class="flex items-center justify-between gap-2">
                                 <label class="text-3xl font-black text-sky-400 w-24">วันนัด</label>
-                                <input type="number" id="ins-fu-days" value="61" min="1" step="1" 
+                                <input type="number" id="ins-fu-days" value="" placeholder="0" min="1" step="1" 
                                     onkeydown="handleEnterKey(event, 'ins-start-date')" oninput="calculateInsulin()"
                                     class="w-32 text-center text-4xl font-black bg-white text-sky-600 rounded-xl p-2 border-4 border-sky-400 focus:outline-none focus:ring-4 focus:ring-sky-300">
                                 <span class="text-lg text-slate-300 font-extrabold">วัน</span>
@@ -146,8 +146,8 @@
                     <!-- F/U Date Box -->
                     <div class="p-4 bg-amber-50 border-t-4 border-amber-400 text-center space-y-2">
                         <span class="text-sm font-black text-amber-900 tracking-wider uppercase block bg-amber-200 py-1 rounded-lg">วันนัดถัดไป (Next F/U)</span>
-                        <div id="res-fu-date" class="text-2xl md:text-3xl font-black text-slate-900 leading-tight">31 ก.ค. 2569 (31/07/69)</div>
-                        <div id="res-fu-day" class="text-2xl font-black text-blue-700">Mon (วันจันทร์)</div>
+                        <div id="res-fu-date" class="text-2xl md:text-3xl font-black text-slate-900 leading-tight">-</div>
+                        <div id="res-fu-day" class="text-2xl font-black text-blue-700">-</div>
                         
                         <!-- Weekend Alert Banner -->
                         <div id="weekend-warning" class="hidden bg-red-600 text-white p-3 rounded-xl font-black text-base animate-pulse shadow-lg flex items-center justify-center space-x-2">
@@ -178,11 +178,11 @@
                                         </div>
                                         <div>
                                             <span class="text-2xl font-black text-slate-800 block">Cartridge</span>
-                                            <span class="text-xs font-bold text-slate-500">คำนวณจริง: <span id="res-cartridge-calc" class="text-sky-700 font-black">8.95</span> หลอด</span>
+                                            <span class="text-xs font-bold text-slate-500">คำนวณจริง: <span id="res-cartridge-calc" class="text-sky-700 font-black">0.00</span> หลอด</span>
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <span id="res-cartridge-net" class="text-5xl font-black text-sky-950">9</span>
+                                        <span id="res-cartridge-net" class="text-5xl font-black text-sky-950">0</span>
                                         <span class="text-sm font-black text-slate-600 block">หลอด</span>
                                     </div>
                                 </div>
@@ -196,7 +196,7 @@
                                         <span class="text-2xl font-black text-slate-800">Needle Pen</span>
                                     </div>
                                     <div class="text-right">
-                                        <span id="res-pen-needle" class="text-5xl font-black text-sky-950">31</span>
+                                        <span id="res-pen-needle" class="text-5xl font-black text-sky-950">0</span>
                                         <span class="text-sm font-black text-slate-600 block">ชิ้น</span>
                                     </div>
                                 </div>
@@ -213,7 +213,7 @@
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <span id="res-penfill-alc8" class="text-5xl font-black text-sky-950">16</span>
+                                        <span id="res-penfill-alc8" class="text-5xl font-black text-sky-950">0</span>
                                         <span class="text-sm font-black text-slate-600 block">แผง</span>
                                     </div>
                                 </div>
@@ -230,7 +230,7 @@
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <span id="res-penfill-alc10" class="text-5xl font-black text-sky-950">13</span>
+                                        <span id="res-penfill-alc10" class="text-5xl font-black text-sky-950">0</span>
                                         <span class="text-sm font-black text-slate-600 block">แผง</span>
                                     </div>
                                 </div>
@@ -247,10 +247,13 @@
                                 <h3 class="text-4xl font-black text-amber-950">Vial</h3>
                             </div>
 
-                            <!-- Low Dose Vial Warning Banner (ปรับสีส้มอ่อน ตัวอักษรสีเข้ม เพิ่มขนาดอ่านง่าย) -->
-                            <div id="vial-lowdose-warning" class="hidden bg-amber-100 text-amber-950 p-3 rounded-2xl font-extrabold text-base border-2 border-amber-300 shadow-sm flex items-center space-x-2.5">
-                                <i class="fa-solid fa-triangle-exclamation text-2xl text-amber-600 flex-shrink-0"></i>
-                                <span>ขนาดยา ≤ 25 Unit/วัน: ใช้ยา Vial ไม่หมดใน 40 วัน</span>
+                            <!-- Low Dose Vial Warning Banner (แยกบรรทัด + ใส่สีพื้นหลังส้มโดดเด่น) -->
+                            <div id="vial-lowdose-warning" class="hidden bg-amber-500 text-white p-3.5 rounded-2xl font-extrabold text-base shadow-md border-2 border-amber-600 flex items-center space-x-3">
+                                <i class="fa-solid fa-triangle-exclamation text-3xl text-yellow-300 flex-shrink-0"></i>
+                                <div class="leading-snug">
+                                    <div class="font-black text-yellow-200">ขนาดยา ≤ 25 Unit/วัน:</div>
+                                    <div>ใช้ยา 1 Vial ไม่หมดใน 40 วัน</div>
+                                </div>
                             </div>
 
                             <!-- List of Items -->
@@ -263,11 +266,11 @@
                                         </div>
                                         <div>
                                             <span class="text-2xl font-black text-slate-800 block">Vial(s)</span>
-                                            <span class="text-xs font-bold text-slate-500">คำนวณจริง: <span id="res-vial-calc" class="text-amber-700 font-black">2.68</span> ขวด</span>
+                                            <span class="text-xs font-bold text-slate-500">คำนวณจริง: <span id="res-vial-calc" class="text-amber-700 font-black">0.00</span> ขวด</span>
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <span id="res-vial-net" class="text-5xl font-black text-amber-950">3</span>
+                                        <span id="res-vial-net" class="text-5xl font-black text-amber-950">0</span>
                                         <span class="text-sm font-black text-slate-600 block">ขวด</span>
                                     </div>
                                 </div>
@@ -281,7 +284,7 @@
                                         <span class="text-2xl font-black text-slate-800">Syringe</span>
                                     </div>
                                     <div class="text-right">
-                                        <span id="res-syringe" class="text-5xl font-black text-amber-950">61</span>
+                                        <span id="res-syringe" class="text-5xl font-black text-amber-950">0</span>
                                         <span class="text-sm font-black text-slate-600 block">ชิ้น</span>
                                     </div>
                                 </div>
@@ -298,7 +301,7 @@
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <span id="res-vial-alc8" class="text-5xl font-black text-amber-950">16</span>
+                                        <span id="res-vial-alc8" class="text-5xl font-black text-amber-950">0</span>
                                         <span class="text-sm font-black text-slate-600 block">แผง</span>
                                     </div>
                                 </div>
@@ -315,7 +318,7 @@
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <span id="res-vial-alc10" class="text-5xl font-black text-amber-950">13</span>
+                                        <span id="res-vial-alc10" class="text-5xl font-black text-amber-950">0</span>
                                         <span class="text-sm font-black text-slate-600 block">แผง</span>
                                     </div>
                                 </div>
@@ -423,9 +426,9 @@
         }
 
         function resetInsulinForm() {
-            document.getElementById('ins-morning').value = 28;
-            document.getElementById('ins-evening').value = 16;
-            document.getElementById('ins-fu-days').value = 61;
+            document.getElementById('ins-morning').value = '';
+            document.getElementById('ins-evening').value = '';
+            document.getElementById('ins-fu-days').value = '';
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('ins-start-date').value = today;
             setAlcMode('all');
@@ -435,10 +438,11 @@
         function calculateInsulin() {
             const morningInput = document.getElementById('ins-morning').value;
             const eveningInput = document.getElementById('ins-evening').value;
+            const fuDaysInput = document.getElementById('ins-fu-days').value;
             
             const morningDose = parseFloat(morningInput) || 0;
             const eveningDose = parseFloat(eveningInput) || 0;
-            const fuDays = parseInt(document.getElementById('ins-fu-days').value) || 0;
+            const fuDays = parseInt(fuDaysInput) || 0;
             const startDateVal = document.getElementById('ins-start-date').value;
 
             // ค่าตั้งต้น A = (เช้า + เย็น) * จำนวนวัน
@@ -479,10 +483,12 @@
                 } else {
                     warningBox.classList.add('hidden');
                 }
+            } else {
+                warningBox.classList.add('hidden');
             }
 
             // 2. Cartridge (A / 300)
-            const cartridgeCalc = totalUnitsA / 300;
+            const cartridgeCalc = fuDays > 0 ? totalUnitsA / 300 : 0;
             const cartridgeNet = Math.ceil(cartridgeCalc);
 
             // 3. Vial (เงื่อนไขพิเศษ: หาก dose รวม/วัน <= 25 unit ให้คำนวณจาก fuDays / 40)
@@ -492,26 +498,26 @@
 
             if (dailyDose > 0 && dailyDose <= 25) {
                 vialWarningBox.classList.remove('hidden');
-                vialCalc = fuDays / 40;
+                vialCalc = fuDays > 0 ? fuDays / 40 : 0;
                 vialNet = Math.ceil(vialCalc);
             } else {
                 vialWarningBox.classList.add('hidden');
-                vialCalc = totalUnitsA / 1000;
+                vialCalc = fuDays > 0 ? totalUnitsA / 1000 : 0;
                 vialNet = Math.ceil(vialCalc);
             }
 
             // 4. Needle Pen = วันนัด / 2 (ปัดขึ้น)
-            const penNeedleCount = Math.ceil(fuDays / 2);
+            const penNeedleCount = fuDays > 0 ? Math.ceil(fuDays / 2) : 0;
 
             // 5. Syringe = วันนัด (ไม่ต้องหาร)
-            const syringeCount = fuDays;
+            const syringeCount = fuDays > 0 ? fuDays : 0;
 
             // 6. Alcohol Cotton Ball (#8 = วันนัด/4, #10 = วันนัด/5)
             // เงื่อนไขพิเศษ: มื้อใดมื้อหนึ่งเป็น 0 (ฉีดมื้อเดียว) ให้เอาจำนวนแผงมาหาร 2 แล้วปัดขึ้น
-            let alc8Bags = Math.ceil(fuDays / 4);
-            let alc10Bags = Math.ceil(fuDays / 5);
+            let alc8Bags = fuDays > 0 ? Math.ceil(fuDays / 4) : 0;
+            let alc10Bags = fuDays > 0 ? Math.ceil(fuDays / 5) : 0;
 
-            if (morningDose === 0 || eveningDose === 0) {
+            if (fuDays > 0 && (morningDose === 0 || eveningDose === 0)) {
                 alc8Bags = Math.ceil(alc8Bags / 2);
                 alc10Bags = Math.ceil(alc10Bags / 2);
             }
