@@ -42,7 +42,6 @@
         <section id="page-home" class="space-y-6">
             <div class="text-center py-8 bg-white rounded-3xl shadow-md border-2 border-slate-200">
                 <h1 class="text-3xl md:text-4xl font-black text-slate-800">เครื่องมือช่วยคำนวณเวชปฏิบัติ</h1>
-                <p class="text-slate-600 mt-2 text-base md:text-lg font-bold">คำนวณรวดเร็ว เน้นตัวหนังสือใหญ่ อ่านง่าย สะดวกแก่การใช้งาน</p>
             </div>
 
             <!-- Thumbnail Grid -->
@@ -116,7 +115,7 @@
                                 <span class="text-lg text-slate-300 font-extrabold">Unit</span>
                             </div>
 
-                            <!-- F/U Days (ปรับสไตล์กรอบให้รับกับ 2 ช่องบน) -->
+                            <!-- F/U Days -->
                             <div class="flex items-center justify-between gap-2">
                                 <label class="text-3xl font-black text-sky-400 w-24">วันนัด</label>
                                 <input type="number" id="ins-fu-days" value="61" min="1" step="1" 
@@ -246,6 +245,12 @@
                             <!-- Header Vial -->
                             <div class="text-center border-b-4 border-amber-300 pb-3">
                                 <h3 class="text-4xl font-black text-amber-950">Vial</h3>
+                            </div>
+
+                            <!-- Low Dose Vial Warning Banner -->
+                            <div id="vial-lowdose-warning" class="hidden bg-amber-500 text-white p-3 rounded-2xl font-black text-sm shadow-md flex items-center space-x-2 border-2 border-amber-600">
+                                <i class="fa-solid fa-triangle-exclamation text-xl text-amber-100 flex-shrink-0"></i>
+                                <span>ขนาดยา $\le 25$ Unit/วัน: ใช้ยา Vial ไม่หมดใน 40 วัน (คำนวณจำนวนขวดจาก $D/40$)</span>
                             </div>
 
                             <!-- List of Items -->
@@ -428,8 +433,11 @@
         }
 
         function calculateInsulin() {
-            const morningDose = parseFloat(document.getElementById('ins-morning').value) || 0;
-            const eveningDose = parseFloat(document.getElementById('ins-evening').value) || 0;
+            const morningInput = document.getElementById('ins-morning').value;
+            const eveningInput = document.getElementById('ins-evening').value;
+            
+            const morningDose = parseFloat(morningInput) || 0;
+            const eveningDose = parseFloat(eveningInput) || 0;
             const fuDays = parseInt(document.getElementById('ins-fu-days').value) || 0;
             const startDateVal = document.getElementById('ins-start-date').value;
 
@@ -477,9 +485,20 @@
             const cartridgeCalc = totalUnitsA / 300;
             const cartridgeNet = Math.ceil(cartridgeCalc);
 
-            // 3. Vial (A / 1000)
-            const vialCalc = totalUnitsA / 1000;
-            const vialNet = Math.ceil(vialCalc);
+            // 3. Vial (เงื่อนไขพิเศษ: หาก dose รวม/วัน <= 25 unit ให้คำนวณจาก fuDays / 40)
+            const vialWarningBox = document.getElementById('vial-lowdose-warning');
+            let vialCalc = 0;
+            let vialNet = 0;
+
+            if (dailyDose > 0 && dailyDose <= 25) {
+                vialWarningBox.classList.remove('hidden');
+                vialCalc = fuDays / 40;
+                vialNet = Math.ceil(vialCalc);
+            } else {
+                vialWarningBox.classList.add('hidden');
+                vialCalc = totalUnitsA / 1000;
+                vialNet = Math.ceil(vialCalc);
+            }
 
             // 4. Needle Pen = วันนัด / 2 (ปัดขึ้น)
             const penNeedleCount = Math.ceil(fuDays / 2);
@@ -488,8 +507,14 @@
             const syringeCount = fuDays;
 
             // 6. Alcohol Cotton Ball (#8 = วันนัด/4, #10 = วันนัด/5)
-            const alc8Bags = Math.ceil(fuDays / 4);
-            const alc10Bags = Math.ceil(fuDays / 5);
+            // เงื่อนไขพิเศษ: มื้อใดมื้อหนึ่งเป็น 0 (ฉีดมื้อเดียว) ให้เอาจำนวนแผงมาหาร 2 แล้วปัดขึ้น
+            let alc8Bags = Math.ceil(fuDays / 4);
+            let alc10Bags = Math.ceil(fuDays / 5);
+
+            if (morningDose === 0 || eveningDose === 0) {
+                alc8Bags = Math.ceil(alc8Bags / 2);
+                alc10Bags = Math.ceil(alc10Bags / 2);
+            }
 
             // Render Results
             document.getElementById('res-fu-date').innerText = fuDateStr;
