@@ -187,7 +187,20 @@ function renderGentamicinTable(pma, pna, bw) {
         `;
         tbody.appendChild(tr);
     });
+function showModule(moduleName) {
+    // ซ่อนทุก Module ก่อน
+    const modules = ['home', 'smalldose']; // สามารถใส่ 'insulin', 'tb', 'dapt' เพิ่มได้
+    modules.forEach(m => {
+        const el = document.getElementById(`module-${m}`);
+        if (el) el.classList.add('hidden');
+    });
 
+    // แสดง Module ที่เลือก
+    const selected = document.getElementById(`module-${moduleName}`);
+    if (selected) {
+        selected.classList.remove('hidden');
+    }
+}
     // Update Gentamicin Solution Info
     const minSolVol = matchedDose / 10;
     document.getElementById('genta-calc-sol').innerText = `${minSolVol.toFixed(2)} ml`;
