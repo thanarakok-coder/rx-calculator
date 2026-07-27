@@ -39,25 +39,81 @@
             </button>
         </header>
 
-        <!-- หน้ารวม / Dashboard -->
+        <!-- 🔴 หน้ารวม / Dashboard (การ์ด Module 1-4 มาครบแล้ว) -->
         <div id="module-home" class="space-y-6">
             <div class="text-center py-6 bg-white rounded-2xl shadow-sm border border-slate-200">
                 <h2 class="text-2xl font-black text-slate-800">เครื่องมือช่วยคำนวณเวชปฏิบัติ</h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <!-- Card Module 4 -->
-                <div onclick="showModule('smalldose')" class="bg-white p-5 rounded-2xl border-2 border-indigo-200 shadow-md hover:shadow-xl transition-all cursor-pointer group">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                
+                <!-- Card Module 1 -->
+                <div onclick="showModule('insulin')" class="bg-white p-5 rounded-2xl border-2 border-indigo-200 shadow-md hover:shadow-xl transition-all cursor-pointer group">
                     <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center text-2xl font-bold mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-syringe"></i>
+                    </div>
+                    <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-0.5 rounded-full">พร้อมใช้งาน</span>
+                    <h3 class="text-lg font-black text-slate-900 mt-2">1. Insulin Calc</h3>
+                    <p class="text-xs text-slate-500 mt-1">คำนวณปริมาณยา, Needle Pen, Syringe, Alc. Ball และวันนัด</p>
+                </div>
+
+                <!-- Card Module 2 -->
+                <div onclick="showModule('tb')" class="bg-white p-5 rounded-2xl border-2 border-emerald-200 shadow-md hover:shadow-xl transition-all cursor-pointer group">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center text-2xl font-bold mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-pills"></i>
+                    </div>
+                    <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-0.5 rounded-full">พร้อมใช้งาน</span>
+                    <h3 class="text-lg font-black text-slate-900 mt-2">2. TB Dosing Calc</h3>
+                    <p class="text-xs text-slate-500 mt-1">คำนวณยาวันโรคตามน้ำหนักตัว (BW) และปรับตาม eGFR</p>
+                </div>
+
+                <!-- Card Module 3 -->
+                <div onclick="showModule('dapt')" class="bg-white p-5 rounded-2xl border-2 border-sky-200 shadow-md hover:shadow-xl transition-all cursor-pointer group">
+                    <div class="w-12 h-12 bg-sky-100 text-sky-600 rounded-xl flex items-center justify-center text-2xl font-bold mb-3 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
+                    <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-0.5 rounded-full">พร้อมใช้งาน</span>
+                    <h3 class="text-lg font-black text-slate-900 mt-2">3. DAPT Date Calc</h3>
+                    <p class="text-xs text-slate-500 mt-1">คำนวณช่วงเวลาการรับยาต้านเกล็ดเลือดตระกูล ASA + Clopidogrel (3 Phase)</p>
+                </div>
+
+                <!-- Card Module 4 -->
+                <div onclick="showModule('smalldose')" class="bg-white p-5 rounded-2xl border-2 border-amber-200 shadow-md hover:shadow-xl transition-all cursor-pointer group">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center text-2xl font-bold mb-3 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-baby"></i>
                     </div>
                     <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-0.5 rounded-full">พร้อมใช้งาน</span>
                     <h3 class="text-lg font-black text-slate-900 mt-2">4. SmalldoseATB</h3>
                     <p class="text-xs text-slate-500 mt-1">คำนวณขนาดยา Antibiotic ในเด็กแรกเกิด (Neonatal Sepsis)</p>
                 </div>
+
             </div>
         </div>
 
-        <!-- Module 4: SmalldoseATB Section -->
+        <!-- 🟢 Section Module 1: Insulin (ใส่เนื้อหาเดิมของ Module 1 ตรงนี้) -->
+        <section id="module-insulin" class="hidden">
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200">
+                <h2 class="text-xl font-bold text-slate-800 mb-2">1. Insulin Calc</h2>
+                <p class="text-slate-500 text-sm">เนื้อหาของ Module Insulin</p>
+            </div>
+        </section>
+
+        <!-- 🟢 Section Module 2: TB (ใส่เนื้อหาเดิมของ Module 2 ตรงนี้) -->
+        <section id="module-tb" class="hidden">
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200">
+                <h2 class="text-xl font-bold text-slate-800 mb-2">2. TB Dosing Calc</h2>
+                <p class="text-slate-500 text-sm">เนื้อหาของ Module TB Dosing</p>
+            </div>
+        </section>
+
+        <!-- 🟢 Section Module 3: DAPT (ใส่เนื้อหาเดิมของ Module 3 ตรงนี้) -->
+        <section id="module-dapt" class="hidden">
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200">
+                <h2 class="text-xl font-bold text-slate-800 mb-2">3. DAPT Date Calc</h2>
+                <p class="text-slate-500 text-sm">เนื้อหาของ Module DAPT Date Calc</p>
+            </div>
+        </section>
+
+        <!-- 🟢 Section Module 4: SmalldoseATB -->
         <section id="module-smalldose" class="hidden space-y-4">
             
             <!-- Top Box: PMA Calculation Explanation Banner -->
