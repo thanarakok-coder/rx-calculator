@@ -85,7 +85,6 @@ function calculatePMA(gaWk, gaDay, pnaDay) {
     const addWk = Math.floor(totalDays / 7);
     const remDays = totalDays % 7;
     
-    // เศษ 1-3 ปัดทิ้ง (0), เศษ 4-6 ปัดขึ้น (+1 wk)
     let roundedWk = 0;
     if (remDays >= 4) {
         roundedWk = 1;
@@ -110,27 +109,24 @@ function calculateATB() {
     const pmaResult = calculatePMA(gaWk, gaDay, pnaDay);
     const pma = pmaResult.pma;
 
-    // Display PMA Calculation Explanation
     document.getElementById('pma-calc-explain').innerHTML = 
         `PMA = GA (${gaWk} wk ${gaDay} d) + PNA (${pnaDay} d) ➔ วันรวม = ${gaDay}+${pnaDay} = ${pmaResult.totalDays} วัน (${pmaResult.addWk} wk เศษ ${pmaResult.remDays} วัน) ` +
         `➔ เศษ ${pmaResult.remDays} วัน [${pmaResult.remDays >= 4 ? 'ปัดขึ้นเป็น 1 wk' : 'ปัดทิ้ง'}] ➔ <strong>PMA = ${pma} สัปดาห์</strong>`;
 
     document.getElementById('display-pma-wk').innerText = `${pma} wk`;
 
-    // Ampicillin Calculation
     const ampiMinTotal = bw * 150;
     const ampiMaxTotal = bw * 200;
     document.getElementById('ampi-min-daily').innerText = ampiMinTotal.toFixed(2);
     document.getElementById('ampi-max-daily').innerText = ampiMaxTotal.toFixed(2);
 
     renderAmpicillinTable(pma, pnaDay, ampiMinTotal, ampiMaxTotal);
-
-    // Gentamicin Calculation
     renderGentamicinTable(pma, pnaDay, bw);
 }
 
 function renderAmpicillinTable(pma, pna, minDaily, maxDaily) {
     const tbody = document.getElementById('tbody-ampi');
+    if (!tbody) return;
     tbody.innerHTML = '';
 
     AMPICILLIN_TABLE.forEach((row) => {
@@ -161,6 +157,7 @@ function renderAmpicillinTable(pma, pna, minDaily, maxDaily) {
 
 function renderGentamicinTable(pma, pna, bw) {
     const tbody = document.getElementById('tbody-genta');
+    if (!tbody) return;
     tbody.innerHTML = '';
 
     let matchedDose = 0;
@@ -187,21 +184,22 @@ function renderGentamicinTable(pma, pna, bw) {
         `;
         tbody.appendChild(tr);
     });
+
+    const minSolVol = matchedDose / 10;
+    const solEl = document.getElementById('genta-calc-sol');
+    if (solEl) solEl.innerText = `${minSolVol.toFixed(2)} ml`;
+}
+
+// Module Switcher Function
 function showModule(moduleName) {
-    // ซ่อนทุก Module ก่อน
-    const modules = ['home', 'smalldose']; // สามารถใส่ 'insulin', 'tb', 'dapt' เพิ่มได้
+    const modules = ['home', 'smalldose'];
     modules.forEach(m => {
         const el = document.getElementById(`module-${m}`);
         if (el) el.classList.add('hidden');
     });
 
-    // แสดง Module ที่เลือก
     const selected = document.getElementById(`module-${moduleName}`);
     if (selected) {
         selected.classList.remove('hidden');
     }
-}
-    // Update Gentamicin Solution Info
-    const minSolVol = matchedDose / 10;
-    document.getElementById('genta-calc-sol').innerText = `${minSolVol.toFixed(2)} ml`;
 }
