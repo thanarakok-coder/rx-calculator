@@ -66,14 +66,14 @@
                     <p class="text-slate-600 text-base font-semibold mt-2">คำนวณยาวัณโรคตามน้ำหนักตัว (BW) และปรับตาม eGFR</p>
                 </div>
 
-                <!-- Tool 3: Favipiravir -->
-                <div class="bg-slate-100 rounded-3xl border-2 border-slate-300 opacity-60 p-6">
-                    <div class="w-16 h-16 bg-slate-200 text-slate-500 rounded-2xl flex items-center justify-center mb-4 text-3xl">
-                        <i class="fa-solid fa-pills"></i>
+                <!-- Tool 3: DAPT Date Calc (สลับมาแทน Favipiravir) -->
+                <div onclick="showPage('dapt')" class="bg-white rounded-3xl shadow-md hover:shadow-2xl transition-all duration-300 border-4 border-indigo-500 cursor-pointer overflow-hidden group p-6">
+                    <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mb-4 text-3xl group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-calendar-days"></i>
                     </div>
-                    <span class="bg-slate-300 text-slate-700 text-sm font-bold px-3 py-1 rounded-lg">กำลังพัฒนา</span>
-                    <h3 class="text-2xl font-bold text-slate-700 mt-3">3. Favipiravir Calc</h3>
-                    <p class="text-slate-500 text-base mt-2">คำนวณยา Favipiravir ต่อคอร์ส</p>
+                    <span class="bg-emerald-100 text-emerald-800 text-sm font-black px-3 py-1 rounded-lg">พร้อมใช้งาน</span>
+                    <h3 class="text-2xl font-black text-slate-800 mt-3 group-hover:text-indigo-600">3. DAPT Date Calc</h3>
+                    <p class="text-slate-600 text-base font-semibold mt-2">คำนวณช่วงเวลาการรับยาต้านเกล็ดเลือดตระกูล ASA + Clopidogrel (3 Phase)</p>
                 </div>
             </div>
         </section>
@@ -299,10 +299,7 @@
 
         <!-- ================= TOOL 2: TB DOSING PAGE ================= -->
         <section id="page-tb" class="hidden space-y-6">
-            
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                
-                <!-- Input Panel (Left) -->
                 <div class="lg:col-span-4 space-y-4">
                     <div class="bg-white rounded-3xl shadow-xl border-4 border-slate-800 overflow-hidden">
                         <div class="bg-slate-900 text-white p-4 text-center flex justify-between items-center">
@@ -313,7 +310,6 @@
                         </div>
 
                         <div class="p-6 space-y-6 bg-slate-950 text-white">
-                            <!-- Weight Input -->
                             <div>
                                 <label class="block text-xl font-black text-emerald-400 mb-2">น้ำหนักตัว (Body Weight)</label>
                                 <div class="flex items-center space-x-3">
@@ -323,7 +319,6 @@
                                 </div>
                             </div>
 
-                            <!-- Checkbox eGFR < 30 -->
                             <div class="pt-4 border-t border-slate-800">
                                 <label class="flex items-center space-x-3 cursor-pointer p-3 rounded-2xl bg-slate-900 hover:bg-slate-800 border-2 border-slate-700 transition">
                                     <input type="checkbox" id="tb-egfr-check" class="w-6 h-6 text-teal-500 rounded focus:ring-teal-400 border-gray-300">
@@ -333,7 +328,6 @@
                         </div>
                     </div>
 
-                    <!-- [ข้อ 1] ย้ายกล่องเตือน eGFR มาไว้ฝั่งซ้าย สีแดงสด Text ขาว Contrast สูง อ่านง่ายชัดเจน -->
                     <div id="tb-egfr-banner" class="hidden bg-red-600 text-white p-5 rounded-3xl shadow-xl border-4 border-red-700 space-y-2">
                         <div class="flex items-center space-x-3 border-b border-red-400 pb-2">
                             <i class="fa-solid fa-triangle-exclamation text-3xl text-yellow-300 flex-shrink-0"></i>
@@ -345,7 +339,6 @@
                     </div>
                 </div>
 
-                <!-- Dosing Table Panel (Right) -->
                 <div class="lg:col-span-8 bg-white rounded-3xl shadow-xl border-4 border-slate-800 overflow-hidden p-4 md:p-6 space-y-4">
                     <div class="overflow-x-auto">
                         <table class="w-full text-center border-collapse">
@@ -360,8 +353,6 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-200 text-lg font-black">
-                                
-                                <!-- 1. H - Isoniazid -->
                                 <tr class="hover:bg-slate-50 transition">
                                     <td class="py-3 px-2 flex flex-col items-center justify-center">
                                         <span class="inline-block w-12 h-10 bg-slate-800 text-white text-2xl font-black rounded-lg leading-10 shadow">H</span>
@@ -374,7 +365,6 @@
                                     <td id="tb-egfr-h" class="text-slate-400">-</td>
                                 </tr>
 
-                                <!-- 2. R - Rifampicin -->
                                 <tr class="hover:bg-slate-50 transition bg-slate-50/50">
                                     <td class="py-3 px-2 flex flex-col items-center justify-center">
                                         <span class="inline-block w-12 h-10 bg-slate-800 text-white text-2xl font-black rounded-lg leading-10 shadow">R</span>
@@ -387,7 +377,6 @@
                                     <td id="tb-egfr-r" class="text-slate-400">-</td>
                                 </tr>
 
-                                <!-- 3. Z - Pyrazinamide -->
                                 <tr class="hover:bg-slate-50 transition">
                                     <td class="py-3 px-2 flex flex-col items-center justify-center">
                                         <span class="inline-block w-12 h-10 bg-slate-800 text-white text-2xl font-black rounded-lg leading-10 shadow">Z</span>
@@ -400,7 +389,6 @@
                                     <td id="tb-egfr-z" class="text-slate-400">-</td>
                                 </tr>
 
-                                <!-- 4. E - Ethambutol -->
                                 <tr class="hover:bg-slate-50 transition bg-slate-50/50">
                                     <td class="py-3 px-2 flex flex-col items-center justify-center">
                                         <span class="inline-block w-12 h-10 bg-slate-800 text-white text-2xl font-black rounded-lg leading-10 shadow">E</span>
@@ -413,7 +401,6 @@
                                     <td id="tb-egfr-e" class="text-slate-400">-</td>
                                 </tr>
 
-                                <!-- 5. S - Streptomycin -->
                                 <tr class="hover:bg-slate-50 transition">
                                     <td class="py-3 px-2 flex flex-col items-center justify-center">
                                         <span class="inline-block w-12 h-10 bg-slate-800 text-white text-2xl font-black rounded-lg leading-10 shadow">S</span>
@@ -426,7 +413,6 @@
                                     <td id="tb-egfr-s" class="text-slate-400">-</td>
                                 </tr>
 
-                                <!-- 6. L - Levofloxacin -->
                                 <tr class="hover:bg-slate-50 transition bg-slate-50/50">
                                     <td class="py-3 px-2 flex flex-col items-center justify-center">
                                         <span class="inline-block w-12 h-10 bg-slate-800 text-white text-2xl font-black rounded-lg leading-10 shadow">L</span>
@@ -439,7 +425,6 @@
                                     <td id="tb-egfr-l" class="text-slate-400">-</td>
                                 </tr>
 
-                                <!-- 7. O - Ofloxacin -->
                                 <tr class="hover:bg-slate-50 transition">
                                     <td class="py-3 px-2 flex flex-col items-center justify-center">
                                         <span class="inline-block w-12 h-10 bg-slate-800 text-white text-2xl font-black rounded-lg leading-10 shadow">O</span>
@@ -451,18 +436,15 @@
                                     <td id="tb-max-o" class="text-slate-500 font-bold">-</td>
                                     <td id="tb-egfr-o" class="text-slate-400">-</td>
                                 </tr>
-
                             </tbody>
                         </table>
                     </div>
 
-                    <!-- Note อ้างอิงใต้ตาราง -->
                     <div class="pt-3 border-t border-slate-200 text-xs font-semibold text-slate-500 space-y-1">
                         <p>* <strong>Ofloxacin:</strong> ปัจจุบันไม่ค่อยแนะนำแล้วในแนวทางปฏิบัติต่างๆ</p>
                         <p><strong>Max Dose Cap:</strong> H (300 mg), R (600 mg), Z (2,000 mg), E (1,600 mg), L (1,000 mg)</p>
                     </div>
 
-                    <!-- [ข้อ 3] เพิ่มช่องทางหาเครื่องมือเพิ่มเติม (เช่น กรณีเด็ก) -->
                     <div class="pt-2">
                         <a href="https://rx-yrih-ntp-2021-tpt-2023-pmdt-2024-583480923268.us-west1.run.app/" target="_blank" rel="noopener noreferrer" 
                            class="w-full bg-teal-50 hover:bg-teal-100 border-2 border-teal-500 text-teal-800 p-3 rounded-2xl font-black flex items-center justify-center space-x-2 transition shadow-sm group">
@@ -471,11 +453,79 @@
                             <i class="fa-solid fa-arrow-up-right-from-square text-sm text-teal-600"></i>
                         </a>
                     </div>
+                </div>
+            </div>
+        </section>
 
+        <!-- ================= TOOL 3: DAPT DATE CALC PAGE ================= -->
+        <section id="page-dapt" class="hidden space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                
+                <!-- Input Panel (Left) -->
+                <div class="lg:col-span-4 bg-white rounded-3xl shadow-xl border-4 border-slate-800 overflow-hidden">
+                    <div class="bg-slate-900 text-white p-4 text-center flex justify-between items-center">
+                        <span class="text-2xl font-black text-indigo-400">กรอกข้อมูล <i class="fa-solid fa-calendar-check text-emerald-400"></i></span>
+                        <button onclick="resetDAPTForm()" class="text-sm bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-lg text-slate-200 border border-slate-600 font-bold">
+                            <i class="fa-solid fa-arrow-rotate-right"></i> รีเซ็ต
+                        </button>
+                    </div>
+
+                    <div class="p-6 space-y-6 bg-slate-950 text-white">
+                        <div>
+                            <label class="block text-xl font-black text-indigo-300 mb-3">วันที่เริ่มรับยา (Start Date)</label>
+                            <input type="date" id="dapt-start-date" 
+                                class="w-full text-center text-2xl font-black bg-white text-indigo-900 rounded-2xl p-4 border-4 border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-300 shadow-inner cursor-pointer">
+                            <span class="block text-xs font-semibold text-slate-400 mt-2 text-center">* สามารถกดเลือกวันที่จากปฏิทินได้เลย</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Result Display Panel (Right) -->
+                <div class="lg:col-span-8 bg-white rounded-3xl shadow-xl border-4 border-slate-800 overflow-hidden p-6 space-y-6">
+                    <div class="border-b-4 border-slate-800 pb-3">
+                        <h2 class="text-3xl font-black text-slate-800 flex items-center space-x-3">
+                            <i class="fa-solid fa-capsules text-indigo-600"></i>
+                            <span>แผนการรับยา DAPT (3 Phases)</span>
+                        </h2>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Phase 1 -->
+                        <div class="bg-indigo-50 border-3 border-indigo-300 rounded-2xl p-5 shadow-sm space-y-2">
+                            <div class="flex items-center justify-between border-b border-indigo-200 pb-2">
+                                <span class="bg-indigo-600 text-white text-sm font-black px-3 py-1 rounded-lg">Phase 1</span>
+                                <span class="text-lg font-black text-indigo-950">ASA + Clopidogrel (21 วัน)</span>
+                            </div>
+                            <div id="dapt-p1-res" class="text-xl md:text-2xl font-extrabold text-slate-800 pt-1">
+                                -
+                            </div>
+                        </div>
+
+                        <!-- Phase 2 -->
+                        <div class="bg-sky-50 border-3 border-sky-300 rounded-2xl p-5 shadow-sm space-y-2">
+                            <div class="flex items-center justify-between border-b border-sky-200 pb-2">
+                                <span class="bg-sky-600 text-white text-sm font-black px-3 py-1 rounded-lg">Phase 2</span>
+                                <span class="text-lg font-black text-sky-950">Clopidogrel เดี่ยว (90 วัน)</span>
+                            </div>
+                            <div id="dapt-p2-res" class="text-xl md:text-2xl font-extrabold text-slate-800 pt-1">
+                                -
+                            </div>
+                        </div>
+
+                        <!-- Phase 3 -->
+                        <div class="bg-emerald-50 border-3 border-emerald-300 rounded-2xl p-5 shadow-sm space-y-2">
+                            <div class="flex items-center justify-between border-b border-emerald-200 pb-2">
+                                <span class="bg-emerald-600 text-white text-sm font-black px-3 py-1 rounded-lg">Phase 3</span>
+                                <span class="text-lg font-black text-emerald-950">ASA เดี่ยว (ตลอดชีวิต)</span>
+                            </div>
+                            <div id="dapt-p3-res" class="text-xl md:text-2xl font-extrabold text-slate-800 pt-1">
+                                -
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
-
         </section>
 
     </main>
@@ -483,5 +533,6 @@
     <!-- External JS Files -->
     <script src="./js/insulin.js"></script>
     <script src="./js/tb-dosing.js"></script>
+    <script src="./js/dapt.js"></script>
 </body>
 </html>
