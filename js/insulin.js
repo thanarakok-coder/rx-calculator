@@ -15,12 +15,14 @@ function showPage(pageId) {
     const homePage = document.getElementById('page-home');
     const insulinPage = document.getElementById('page-insulin');
     const tbPage = document.getElementById('page-tb');
+    const daptPage = document.getElementById('page-dapt'); // <--- เพิ่ม
     const btnHome = document.getElementById('btn-home');
 
     // ซ่อนทุกหน้าก่อน
     if (homePage) homePage.classList.add('hidden');
     if (insulinPage) insulinPage.classList.add('hidden');
     if (tbPage) tbPage.classList.add('hidden');
+    if (daptPage) daptPage.classList.add('hidden'); // <--- เพิ่ม
 
     // เลือกเปิดหน้าที่กด
     if (pageId === 'home') {
@@ -31,6 +33,9 @@ function showPage(pageId) {
         if (btnHome) btnHome.classList.remove('hidden');
     } else if (pageId === 'tb') {
         if (tbPage) tbPage.classList.remove('hidden');
+        if (btnHome) btnHome.classList.remove('hidden');
+    } else if (pageId === 'dapt') { // <--- เพิ่ม
+        if (daptPage) daptPage.classList.remove('hidden');
         if (btnHome) btnHome.classList.remove('hidden');
     }
 }
