@@ -4,15 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const p2DaysInput = document.getElementById('dapt-p2-days');
 
     if (startDateInput) {
-        // ตั้งค่าวันเริ่มต้นเป็นวันนี้
-        const today = new Date().toISOString().split('T')[0];
-        startDateInput.value = today;
+        // ตั้งค่าเริ่มต้นเป็นค่าว่าง (ตามที่ขอ)
+        startDateInput.value = '';
         
         startDateInput.addEventListener('change', calculateDAPT);
         if (p1DaysInput) p1DaysInput.addEventListener('input', calculateDAPT);
         if (p2DaysInput) p2DaysInput.addEventListener('input', calculateDAPT);
 
-        calculateDAPT(); // คำนวณทันทีเมื่อโหลดหน้า
+        calculateDAPT(); // คำนวณเบื้องต้น (จะแสดงผลว่าง/ขีด)
     }
 });
 
@@ -31,12 +30,19 @@ function formatDateShort(dateObj) {
     return `${day}/${month}/${year}`;
 }
 
-// ชื่อวันแบบเต็ม และตัวย่อ
 const DAY_NAMES_FULL = ['วันอาทิตย์', 'วันจันทร์', 'วันอังคาร', 'วันพุธ', 'วันพฤหัสบดี', 'วันศุกร์', 'วันเสาร์'];
 const DAY_NAMES_SHORT = ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'];
 
 // สร้าง UI กล่องวันที่
-function createDateCard(dateObj, badgeColorClass) {
+function createDateCard(dateObj) {
+    if (!dateObj) {
+        return `
+            <div class="flex-1 bg-white border-2 border-slate-300 rounded-2xl p-3 shadow-sm text-center flex flex-col justify-center items-center">
+                <span class="text-2xl md:text-3xl font-black text-slate-300">-</span>
+                <span class="text-xs font-bold text-slate-300 mt-0.5">ระบุวันที่</span>
+            </div>
+        `;
+    }
     const fullDate = formatDateShort(dateObj);
     const dayName = DAY_NAMES_FULL[dateObj.getDay()];
 
@@ -50,14 +56,35 @@ function createDateCard(dateObj, badgeColorClass) {
 
 function calculateDAPT() {
     const inputVal = document.getElementById('dapt-start-date').value;
-    if (!inputVal) return;
-
     const p1Days = parseInt(document.getElementById('dapt-p1-days').value) || 0;
     const p2Days = parseInt(document.getElementById('dapt-p2-days').value) || 0;
 
     // อัปเดตข้อความจำนวนวันในการ์ด
     document.getElementById('p1-days-label').innerText = `(${p1Days} วัน)`;
     document.getElementById('p2-days-label').innerText = `(${p2Days} วัน)`;
+
+    // กรณีที่ยังไม่ได้เลือกวันที่
+    if (!inputVal) {
+        const emptyPair = `
+            <div class="flex items-center space-x-2 md:space-x-4 w-full">
+                ${createDateCard(null)}
+                <span class="text-sm font-black text-slate-300 uppercase">ถึง</span>
+                ${createDateCard(null)}
+            </div>
+        `;
+        document.getElementById('dapt-p1-res').innerHTML = emptyPair;
+        document.getElementById('dapt-p2-res').innerHTML = emptyPair;
+        document.getElementById('dapt-p3-res').innerHTML = `
+            <div class="flex items-center space-x-2 md:space-x-4 w-full">
+                ${createDateCard(null)}
+                <div class="flex-1 bg-slate-100 border-2 border-slate-200 rounded-2xl p-3 text-center flex items-center justify-center">
+                    <span class="text-xl md:text-2xl font-black text-slate-300">เป็นต้นไป</span>
+                </div>
+            </div>
+        `;
+        document.getElementById('dapt-copy-text').value = "กรุณาเลือกวันที่เริ่มรับยาก่อน...";
+        return;
+    }
 
     const dateA = new Date(inputVal);
 
@@ -98,13 +125,12 @@ function calculateDAPT() {
         </div>
     `;
 
-    // Generate Text สำหรับ Copy (ใช้ Fixed-width font layout ในการจัดให้ : ตรงกัน)
+    // Generate Text สำหรับ Copy
     const startInputStr = formatDateShort(dateA);
     const p1Str = `${formatDateShort(p1Start)}(${DAY_NAMES_SHORT[p1Start.getDay()]}) - ${formatDateShort(p1End)}(${DAY_NAMES_SHORT[p1End.getDay()]})`;
     const p2Str = `${formatDateShort(p2Start)}(${DAY_NAMES_SHORT[p2Start.getDay()]}) - ${formatDateShort(p2End)}(${DAY_NAMES_SHORT[p2End.getDay()]})`;
     const p3Str = `${formatDateShort(p3Start)}(${DAY_NAMES_SHORT[p3Start.getDay()]}) เป็นต้นไป`;
 
-    // ใช้ Space จัดระยะให้ เครื่องหมาย : ตรงกันอย่างสมบูรณ์
     const templateText = 
 `DAPT start Tx @${startInputStr}
 Phase1 (ASA + Clopidogrel) : ${p1Str}
@@ -115,21 +141,20 @@ Phase3 (ASA)               : ${p3Str}`;
 }
 
 function resetDAPTForm() {
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('dapt-start-date').value = today;
+    document.getElementById('dapt-start-date').value = '';
     document.getElementById('dapt-p1-days').value = 21;
     document.getElementById('dapt-p2-days').value = 90;
     calculateDAPT();
 }
 
-// ฟังก์ชันสำหรับปุ่ม Copy ข้อความ
 function copyDAPTText() {
     const copyText = document.getElementById('dapt-copy-text');
+    if (!copyText.value || copyText.value.startsWith("กรุณาเลือก")) return;
+
     copyText.select();
-    copyText.setSelectionRange(0, 99999); // สำหรับ mobile
+    copyText.setSelectionRange(0, 99999);
     navigator.clipboard.writeText(copyText.value);
 
-    // แจ้งเตือนเมื่อ Copy สำเร็จ
     const btn = document.getElementById('btn-copy-dapt');
     const originalText = btn.innerHTML;
     btn.innerHTML = `<i class="fa-solid fa-check"></i> คัดลอกแล้ว!`;
