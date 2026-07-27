@@ -575,12 +575,203 @@
 
             </div>
         </section>
+<!-- ================= TOOL 4: SMALLDOSE ATB PAGE ================= -->
+        <section id="page-smalldose" class="space-y-4">
+            
+            <!-- Top Box: PMA Calculation Explanation Banner -->
+            <div class="bg-indigo-950 text-indigo-100 border-2 border-indigo-700 rounded-2xl p-3 text-xs md:text-sm flex flex-col md:flex-row items-center justify-between gap-2 shadow-md">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-circle-info text-amber-400 text-lg"></i>
+                    <span id="pma-calc-explain" class="leading-relaxed">กำลังคำนวณ PMA...</span>
+                </div>
+                <div class="bg-indigo-800 text-amber-300 font-black px-3 py-1 rounded-xl text-sm border border-indigo-500 whitespace-nowrap">
+                    PMA: <span id="display-pma-wk" class="text-white">0 wk</span>
+                </div>
+            </div>
 
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                
+                <!-- Left Input Panel & Toggles -->
+                <div class="lg:col-span-4 space-y-4">
+                    <div class="bg-slate-900 text-white rounded-3xl shadow-xl border-4 border-slate-800 overflow-hidden">
+                        <div class="bg-slate-800 p-3.5 flex justify-between items-center border-b border-slate-700">
+                            <span class="text-lg font-black text-amber-400"><i class="fa-solid fa-baby"></i> Neonatal Info</span>
+                            <button onclick="resetATBForm()" class="text-xs bg-slate-700 hover:bg-slate-600 px-2.5 py-1 rounded-lg text-slate-200 font-bold border border-slate-500">
+                                <i class="fa-solid fa-arrow-rotate-right"></i> รีเซ็ต
+                            </button>
+                        </div>
+
+                        <div class="p-4 space-y-3.5">
+                            <!-- Input 1 & 2: GA (Wk & Day) -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1">Gestation Age (อายุครรภ์มารดา)</label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div class="relative">
+                                        <input type="number" id="atb-ga-wk" value="0" min="0" 
+                                            class="w-full text-center text-lg font-black bg-slate-950 text-emerald-400 rounded-xl p-2 border-2 border-slate-700 focus:border-amber-400 focus:outline-none">
+                                        <span class="absolute right-2 top-2.5 text-xs text-slate-400 font-bold">Wk</span>
+                                    </div>
+                                    <div class="relative">
+                                        <input type="number" id="atb-ga-day" value="0" min="0" max="6" 
+                                            class="w-full text-center text-lg font-black bg-slate-950 text-emerald-400 rounded-xl p-2 border-2 border-slate-700 focus:border-amber-400 focus:outline-none">
+                                        <span class="absolute right-2 top-2.5 text-xs text-slate-400 font-bold">Day</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Input 3: Postnatal Age (Day) -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1">Postnatal Age (อายุทารก)</label>
+                                <div class="flex items-center space-x-1">
+                                    <button onclick="adjustValue('atb-pna-day', -1)" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 px-3 py-2 rounded-xl text-slate-200 font-black">-</button>
+                                    <div class="relative flex-1">
+                                        <input type="number" id="atb-pna-day" value="0" min="0" 
+                                            class="w-full text-center text-lg font-black bg-slate-950 text-sky-400 rounded-xl p-2 border-2 border-slate-700 focus:border-amber-400 focus:outline-none">
+                                        <span class="absolute right-2 top-2.5 text-xs text-slate-400 font-bold">Day</span>
+                                    </div>
+                                    <button onclick="adjustValue('atb-pna-day', 1)" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 px-3 py-2 rounded-xl text-slate-200 font-black">+</button>
+                                </div>
+                            </div>
+
+                            <!-- Input 4: BW (Kg 4 decimals) -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 mb-1">BW (น้ำหนักทารก)</label>
+                                <div class="flex items-center space-x-1">
+                                    <button onclick="adjustValue('atb-bw', -0.05)" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 px-2.5 py-2 rounded-xl text-slate-200 font-black text-xs">-0.05</button>
+                                    <div class="relative flex-1">
+                                        <input type="number" id="atb-bw" value="0.0000" step="0.0001" min="0" 
+                                            class="w-full text-center text-lg font-black bg-slate-950 text-amber-300 rounded-xl p-2 border-2 border-slate-700 focus:border-amber-400 focus:outline-none">
+                                        <span class="absolute right-2 top-2.5 text-xs text-slate-400 font-bold">Kg</span>
+                                    </div>
+                                    <button onclick="adjustValue('atb-bw', 0.05)" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 px-2.5 py-2 rounded-xl text-slate-200 font-black text-xs">+0.05</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Drug Toggles -->
+                    <div class="bg-white rounded-3xl shadow-md border-2 border-slate-200 p-4 space-y-2.5">
+                        <span class="text-xs font-black text-slate-500 uppercase tracking-wider block">เลือกรายการยาที่ต้องการคำนวณ</span>
+                        <div class="grid grid-cols-2 gap-2 text-xs font-bold">
+                            <label class="flex items-center space-x-2 bg-indigo-50 p-2 rounded-xl border border-indigo-200 cursor-pointer">
+                                <input type="checkbox" id="toggle-ampi" checked class="w-4 h-4 text-indigo-600 rounded">
+                                <span class="text-indigo-950">Ampicillin</span>
+                            </label>
+                            <label class="flex items-center space-x-2 bg-sky-50 p-2 rounded-xl border border-sky-200 cursor-pointer">
+                                <input type="checkbox" id="toggle-genta" checked class="w-4 h-4 text-sky-600 rounded">
+                                <span class="text-sky-950">Gentamicin</span>
+                            </label>
+                            <label class="flex items-center space-x-2 bg-emerald-50 p-2 rounded-xl border border-emerald-200 cursor-pointer">
+                                <input type="checkbox" id="toggle-cloxa" class="w-4 h-4 text-emerald-600 rounded">
+                                <span class="text-emerald-950">Cloxacillin</span>
+                            </label>
+                            <label class="flex items-center space-x-2 bg-amber-50 p-2 rounded-xl border border-amber-200 cursor-pointer">
+                                <input type="checkbox" id="toggle-clinda" class="w-4 h-4 text-amber-600 rounded">
+                                <span class="text-amber-950">Clindamycin</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Sector: Results Display -->
+                <div class="lg:col-span-8 space-y-6">
+                    
+                    <!-- DRUG 1: AMPICILLIN -->
+                    <div id="card-ampi" class="bg-white rounded-3xl shadow-xl border-4 border-slate-800 p-5 space-y-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-slate-200 pb-3 gap-2">
+                            <div>
+                                <h3 class="text-2xl font-black text-indigo-950">Ampicillin inj. <span class="text-sm font-semibold text-slate-500">(500mg/vial)</span></h3>
+                                <p class="text-xs text-slate-500 font-semibold">Dose range 150 - 200 mg/kg/day</p>
+                            </div>
+                            <!-- Small Total Daily Dose Display -->
+                            <div class="bg-indigo-50 border border-indigo-200 px-3 py-1.5 rounded-xl text-xs text-indigo-900 font-bold self-start sm:self-auto">
+                                Total Daily Dose: <span id="ampi-min-daily" class="font-mono text-indigo-600">0</span> - <span id="ampi-max-daily" class="font-mono text-indigo-600">0</span> mg/day
+                            </div>
+                        </div>
+
+                        <!-- Standard Table -->
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-xs text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-900 text-white font-bold">
+                                        <th class="p-2 border border-slate-700 text-center">PMA</th>
+                                        <th class="p-2 border border-slate-700 text-center">PostNatals</th>
+                                        <th class="p-2 border border-slate-700 text-right">Min</th>
+                                        <th class="p-2 border border-slate-700 text-right">Max</th>
+                                        <th class="p-2 border border-slate-700 text-center">/dose</th>
+                                        <th class="p-2 border border-slate-700 text-center">Interval</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-ampi"></tbody>
+                            </table>
+                        </div>
+
+                        <!-- Ampicillin Footer Notes -->
+                        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-3 text-xs text-slate-600 space-y-1">
+                            <p class="font-bold text-slate-800"><i class="fa-solid fa-syringe text-indigo-600"></i> คำแนะนำการบริหารยา Ampicillin:</p>
+                            <p>* <strong>IV slow push / IM:</strong> ถ้าไม่เกิน 500 mg ให้ slow push 3-5 นาที, ถ้าเกิน ให้ slow push 10-15 นาที <span class="text-slate-500">(Recommended conc: 30, 40, 50, and 100 mg/mL for intermittent IV)</span></p>
+                            <p>* <strong>Reconstituted solution:</strong> SWFI</p>
+                            <p>* <strong>Compatible Solution:</strong> D5W, LRS, NSS, SWI</p>
+                        </div>
+                    </div>
+
+                    <!-- DRUG 2: GENTAMICIN -->
+                    <div id="card-genta" class="bg-white rounded-3xl shadow-xl border-4 border-slate-800 p-5 space-y-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-slate-200 pb-3 gap-2">
+                            <div>
+                                <h3 class="text-2xl font-black text-sky-950">Gentamicin inj. <span class="text-sm font-semibold text-slate-500">(80mg/2ml)</span></h3>
+                                <p class="text-xs text-slate-500 font-semibold">Max Conc. 10 mg/ml | IV infusion อย่างน้อย 30 - 120 min</p>
+                            </div>
+                        </div>
+
+                        <!-- Standard Table -->
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-xs text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-900 text-white font-bold">
+                                        <th class="p-2 border border-slate-700 text-center">PMA</th>
+                                        <th class="p-2 border border-slate-700 text-center">PostNatal</th>
+                                        <th class="p-2 border border-slate-700 text-right">Dose</th>
+                                        <th class="p-2 border border-slate-700 text-center">Unit</th>
+                                        <th class="p-2 border border-slate-700 text-center">Interval</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-genta"></tbody>
+                            </table>
+                        </div>
+
+                        <!-- Gentamicin Info & Calculated Solution -->
+                        <div class="bg-sky-50 border border-sky-200 rounded-2xl p-3 text-xs text-sky-950 space-y-1.5">
+                            <div class="flex justify-between items-center font-bold">
+                                <span><i class="fa-solid fa-flask text-sky-600"></i> ปริมาตร Solution อย่างน้อยที่สุดที่ใช้ผสม:</span>
+                                <span id="genta-calc-sol" class="text-base font-mono font-black text-sky-700 bg-white px-2 py-0.5 rounded-lg border border-sky-300">0.00 ml</span>
+                            </div>
+                            <p>* <strong>Compatible Solution:</strong> D5W, D10W, NSS</p>
+                        </div>
+                    </div>
+
+                    <!-- DRUG 3: CLOXACILLIN (Placeholder for next step) -->
+                    <div id="card-cloxa" class="hidden bg-white rounded-3xl shadow-xl border-4 border-slate-800 p-5">
+                        <h3 class="text-xl font-black text-emerald-950">Cloxacillin inj.</h3>
+                        <p class="text-xs text-slate-400 mt-1">รอการอัปเดตข้อมูลเพิ่มเติมในขั้นตอนถัดไป...</p>
+                    </div>
+
+                    <!-- DRUG 4: CLINDA (Placeholder for next step) -->
+                    <div id="card-clinda" class="hidden bg-white rounded-3xl shadow-xl border-4 border-slate-800 p-5">
+                        <h3 class="text-xl font-black text-amber-950">Clindamycin inj.</h3>
+                        <p class="text-xs text-slate-400 mt-1">รอการอัปเดตข้อมูลเพิ่มเติมในขั้นตอนถัดไป...</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
     </main>
 
     <!-- External JS Files -->
     <script src="./js/insulin.js"></script>
     <script src="./js/tb-dosing.js"></script>
     <script src="./js/dapt.js"></script>
+    <script src="js/smalldose.js"></script>
 </body>
 </html>
