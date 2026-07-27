@@ -11,6 +11,17 @@
             <i class="fa-solid fa-house"></i>
             <span>หน้ารวม (Home)</span>
         </button>
+        <style>
+/* ซ่อนลูกศร Up-Down ของ Input Number */
+input[type="number"].no-spin::-webkit-inner-spin-button,
+input[type="number"].no-spin::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"].no-spin {
+    -moz-appearance: textfield;
+}
+</style>
     </header>
 
     <!-- 🔴 หน้ารวม / Dashboard (แสดงเฉพาะตอนเลือก Home) -->
