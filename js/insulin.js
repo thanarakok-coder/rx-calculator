@@ -6,39 +6,13 @@ const thaiMonths = [
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('ins-start-date').value = today;
-    calculateInsulin();
-});
-
-function showPage(pageId) {
-    const homePage = document.getElementById('page-home');
-    const insulinPage = document.getElementById('page-insulin');
-    const tbPage = document.getElementById('page-tb');
-    const daptPage = document.getElementById('page-dapt'); // <--- เพิ่ม
-    const btnHome = document.getElementById('btn-home');
-
-    // ซ่อนทุกหน้าก่อน
-    if (homePage) homePage.classList.add('hidden');
-    if (insulinPage) insulinPage.classList.add('hidden');
-    if (tbPage) tbPage.classList.add('hidden');
-    if (daptPage) daptPage.classList.add('hidden'); // <--- เพิ่ม
-
-    // เลือกเปิดหน้าที่กด
-    if (pageId === 'home') {
-        if (homePage) homePage.classList.remove('hidden');
-        if (btnHome) btnHome.classList.add('hidden');
-    } else if (pageId === 'insulin') {
-        if (insulinPage) insulinPage.classList.remove('hidden');
-        if (btnHome) btnHome.classList.remove('hidden');
-    } else if (pageId === 'tb') {
-        if (tbPage) tbPage.classList.remove('hidden');
-        if (btnHome) btnHome.classList.remove('hidden');
-    } else if (pageId === 'dapt') { // <--- เพิ่ม
-        if (daptPage) daptPage.classList.remove('hidden');
-        if (btnHome) btnHome.classList.remove('hidden');
+    const startDateInput = document.getElementById('ins-start-date');
+    if (startDateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        startDateInput.value = today;
+        calculateInsulin();
     }
-}
+});
 
 function handleEnterKey(event, nextId) {
     if (event.key === 'Enter') {
@@ -60,16 +34,18 @@ function setAlcMode(mode) {
     const btn8 = document.getElementById('btn-alc-8');
     const btn10 = document.getElementById('btn-alc-10');
 
-    [btnAll, btn8, btn10].forEach(btn => {
-        btn.className = "py-2 rounded-xl bg-white text-slate-700 border-2 hover:bg-slate-50";
-    });
+    if (btnAll && btn8 && btn10) {
+        [btnAll, btn8, btn10].forEach(btn => {
+            btn.className = "py-2 rounded-xl bg-white text-slate-700 border-2 hover:bg-slate-50";
+        });
 
-    if (mode === 'all') {
-        btnAll.className = "py-2 rounded-xl bg-blue-600 text-white shadow-md";
-    } else if (mode === '8') {
-        btn8.className = "py-2 rounded-xl bg-blue-600 text-white shadow-md";
-    } else if (mode === '10') {
-        btn10.className = "py-2 rounded-xl bg-blue-600 text-white shadow-md";
+        if (mode === 'all') {
+            btnAll.className = "py-2 rounded-xl bg-blue-600 text-white shadow-md";
+        } else if (mode === '8') {
+            btn8.className = "py-2 rounded-xl bg-blue-600 text-white shadow-md";
+        } else if (mode === '10') {
+            btn10.className = "py-2 rounded-xl bg-blue-600 text-white shadow-md";
+        }
     }
 
     updateAlcVisibility();
@@ -80,6 +56,8 @@ function updateAlcVisibility() {
     const penfillAlc10 = document.getElementById('box-penfill-alc10');
     const vialAlc8 = document.getElementById('box-vial-alc8');
     const vialAlc10 = document.getElementById('box-vial-alc10');
+
+    if (!penfillAlc8 || !penfillAlc10 || !vialAlc8 || !vialAlc10) return;
 
     if (alcMode === 'all') {
         penfillAlc8.classList.remove('hidden');
@@ -100,24 +78,31 @@ function updateAlcVisibility() {
 }
 
 function resetInsulinForm() {
-    document.getElementById('ins-morning').value = '';
-    document.getElementById('ins-evening').value = '';
-    document.getElementById('ins-fu-days').value = '';
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('ins-start-date').value = today;
+    const morning = document.getElementById('ins-morning');
+    const evening = document.getElementById('ins-evening');
+    const fuDays = document.getElementById('ins-fu-days');
+    const startDate = document.getElementById('ins-start-date');
+
+    if (morning) morning.value = '';
+    if (evening) evening.value = '';
+    if (fuDays) fuDays.value = '';
+    if (startDate) startDate.value = new Date().toISOString().split('T')[0];
+
     setAlcMode('all');
     calculateInsulin();
 }
 
 function calculateInsulin() {
-    const morningInput = document.getElementById('ins-morning').value;
-    const eveningInput = document.getElementById('ins-evening').value;
-    const fuDaysInput = document.getElementById('ins-fu-days').value;
+    const morningInput = document.getElementById('ins-morning');
+    const eveningInput = document.getElementById('ins-evening');
+    const fuDaysInput = document.getElementById('ins-fu-days');
+    const startDateVal = document.getElementById('ins-start-date')?.value;
+
+    if (!morningInput || !eveningInput || !fuDaysInput) return;
     
-    const morningDose = parseFloat(morningInput) || 0;
-    const eveningDose = parseFloat(eveningInput) || 0;
-    const fuDays = parseInt(fuDaysInput) || 0;
-    const startDateVal = document.getElementById('ins-start-date').value;
+    const morningDose = parseFloat(morningInput.value) || 0;
+    const eveningDose = parseFloat(eveningInput.value) || 0;
+    const fuDays = parseInt(fuDaysInput.value) || 0;
 
     const dailyDose = morningDose + eveningDose;
     const totalUnitsA = dailyDose * fuDays;
@@ -147,14 +132,16 @@ function calculateInsulin() {
 
         fuDateStr = `${day} ${monthText} ${yearBE} (${dayPadded}/${monthNum}/${yearBEShort})`;
 
-        if (dayIndex === 0 || dayIndex === 6) {
-            warningBox.classList.remove('hidden');
-            warningText.innerText = `ตรงกับวันหยุด (${dayNamesThai[dayIndex]}) กรุณาเลื่อนวันนัด!`;
-        } else {
-            warningBox.classList.add('hidden');
+        if (warningBox && warningText) {
+            if (dayIndex === 0 || dayIndex === 6) {
+                warningBox.classList.remove('hidden');
+                warningText.innerText = `ตรงกับวันหยุด (${dayNamesThai[dayIndex]}) กรุณาเลื่อนวันนัด!`;
+            } else {
+                warningBox.classList.add('hidden');
+            }
         }
     } else {
-        warningBox.classList.add('hidden');
+        if (warningBox) warningBox.classList.add('hidden');
     }
 
     const cartridgeCalc = fuDays > 0 ? totalUnitsA / 300 : 0;
@@ -165,11 +152,11 @@ function calculateInsulin() {
     let vialNet = 0;
 
     if (dailyDose > 0 && dailyDose <= 25) {
-        vialWarningBox.classList.remove('hidden');
+        if (vialWarningBox) vialWarningBox.classList.remove('hidden');
         vialCalc = fuDays > 0 ? fuDays / 40 : 0;
         vialNet = Math.ceil(vialCalc);
     } else {
-        vialWarningBox.classList.add('hidden');
+        if (vialWarningBox) vialWarningBox.classList.add('hidden');
         vialCalc = fuDays > 0 ? totalUnitsA / 1000 : 0;
         vialNet = Math.ceil(vialCalc);
     }
@@ -185,21 +172,33 @@ function calculateInsulin() {
         alc10Bags = Math.ceil(alc10Bags / 2);
     }
 
-    document.getElementById('res-fu-date').innerText = fuDateStr;
-    document.getElementById('res-fu-day').innerText = dayOfWeekStr;
+    const resFuDate = document.getElementById('res-fu-date');
+    if (resFuDate) resFuDate.innerText = fuDateStr;
+    const resFuDay = document.getElementById('res-fu-day');
+    if (resFuDay) resFuDay.innerText = dayOfWeekStr;
 
-    document.getElementById('res-cartridge-calc').innerText = cartridgeCalc.toFixed(2);
-    document.getElementById('res-cartridge-net').innerText = cartridgeNet;
-    document.getElementById('res-pen-needle').innerText = penNeedleCount;
+    const resCartCalc = document.getElementById('res-cartridge-calc');
+    if (resCartCalc) resCartCalc.innerText = cartridgeCalc.toFixed(2);
+    const resCartNet = document.getElementById('res-cartridge-net');
+    if (resCartNet) resCartNet.innerText = cartridgeNet;
+    const resPenNeedle = document.getElementById('res-pen-needle');
+    if (resPenNeedle) resPenNeedle.innerText = penNeedleCount;
 
-    document.getElementById('res-vial-calc').innerText = vialCalc.toFixed(2);
-    document.getElementById('res-vial-net').innerText = vialNet;
-    document.getElementById('res-syringe').innerText = syringeCount;
+    const resVialCalc = document.getElementById('res-vial-calc');
+    if (resVialCalc) resVialCalc.innerText = vialCalc.toFixed(2);
+    const resVialNet = document.getElementById('res-vial-net');
+    if (resVialNet) resVialNet.innerText = vialNet;
+    const resSyringe = document.getElementById('res-syringe');
+    if (resSyringe) resSyringe.innerText = syringeCount;
 
-    document.getElementById('res-penfill-alc8').innerText = alc8Bags;
-    document.getElementById('res-penfill-alc10').innerText = alc10Bags;
-    document.getElementById('res-vial-alc8').innerText = alc8Bags;
-    document.getElementById('res-vial-alc10').innerText = alc10Bags;
+    const resPenAlc8 = document.getElementById('res-penfill-alc8');
+    if (resPenAlc8) resPenAlc8.innerText = alc8Bags;
+    const resPenAlc10 = document.getElementById('res-penfill-alc10');
+    if (resPenAlc10) resPenAlc10.innerText = alc10Bags;
+    const resVialAlc8 = document.getElementById('res-vial-alc8');
+    if (resVialAlc8) resVialAlc8.innerText = alc8Bags;
+    const resVialAlc10 = document.getElementById('res-vial-alc10');
+    if (resVialAlc10) resVialAlc10.innerText = alc10Bags;
 
     updateAlcVisibility();
 }
