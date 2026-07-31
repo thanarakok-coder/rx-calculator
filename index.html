@@ -11,7 +11,7 @@
     <!-- Font Awesome Icons CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Custom CSS (ซ่อนลูกศร default ของ Input Number) -->
+    <!-- Custom CSS -->
     <style>
         input[type="number"].no-spin::-webkit-inner-spin-button,
         input[type="number"].no-spin::-webkit-outer-spin-button {
@@ -33,14 +33,14 @@
                 <i class="fa-solid fa-calculator text-2xl text-emerald-400"></i>
                 <h1 class="text-xl font-black tracking-wide">Rx Calc Tools</h1>
             </div>
-            <button onclick="showModule('home')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-xl text-sm font-bold border border-slate-700 flex items-center space-x-2 transition-all">
+            <button id="btn-home-nav" onclick="showModule('home')" class="hidden bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-xl text-sm font-bold border border-slate-700 flex items-center space-x-2 transition-all">
                 <i class="fa-solid fa-house"></i>
                 <span>หน้ารวม (Home)</span>
             </button>
         </header>
 
-        <!-- 🔴 หน้ารวม / Dashboard (การ์ด Module 1-4 มาครบแล้ว) -->
-        <div id="module-home" class="space-y-6">
+        <!-- 🔴 Dashboard / Home Page -->
+        <div id="module-home" class="app-module space-y-6">
             <div class="text-center py-6 bg-white rounded-2xl shadow-sm border border-slate-200">
                 <h2 class="text-2xl font-black text-slate-800">เครื่องมือช่วยคำนวณเวชปฏิบัติ</h2>
             </div>
@@ -89,24 +89,24 @@
             </div>
         </div>
 
-        <!-- 🟢 Section Module 1: Insulin (ใส่เนื้อหาเดิมของ Module 1 ตรงนี้) -->
-        <section id="module-insulin" class="hidden">
+        <!-- 🟢 Section Module 1: Insulin -->
+        <section id="module-insulin" class="app-module hidden">
             <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200">
                 <h2 class="text-xl font-bold text-slate-800 mb-2">1. Insulin Calc</h2>
                 <p class="text-slate-500 text-sm">เนื้อหาของ Module Insulin</p>
             </div>
         </section>
 
-        <!-- 🟢 Section Module 2: TB (ใส่เนื้อหาเดิมของ Module 2 ตรงนี้) -->
-        <section id="module-tb" class="hidden">
+        <!-- 🟢 Section Module 2: TB -->
+        <section id="module-tb" class="app-module hidden">
             <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200">
                 <h2 class="text-xl font-bold text-slate-800 mb-2">2. TB Dosing Calc</h2>
                 <p class="text-slate-500 text-sm">เนื้อหาของ Module TB Dosing</p>
             </div>
         </section>
 
-        <!-- 🟢 Section Module 3: DAPT (ใส่เนื้อหาเดิมของ Module 3 ตรงนี้) -->
-        <section id="module-dapt" class="hidden">
+        <!-- 🟢 Section Module 3: DAPT -->
+        <section id="module-dapt" class="app-module hidden">
             <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-200">
                 <h2 class="text-xl font-bold text-slate-800 mb-2">3. DAPT Date Calc</h2>
                 <p class="text-slate-500 text-sm">เนื้อหาของ Module DAPT Date Calc</p>
@@ -114,9 +114,7 @@
         </section>
 
         <!-- 🟢 Section Module 4: SmalldoseATB -->
-        <section id="module-smalldose" class="hidden space-y-4">
-            
-            <!-- Top Box: PMA Calculation Explanation Banner -->
+        <section id="module-smalldose" class="app-module hidden space-y-4">
             <div class="bg-indigo-950 text-indigo-100 border-2 border-indigo-700 rounded-2xl p-3.5 text-sm flex flex-col md:flex-row items-center justify-between gap-2 shadow-md">
                 <div class="flex items-center space-x-2">
                     <i class="fa-solid fa-circle-info text-amber-400 text-lg"></i>
@@ -128,8 +126,6 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                
-                <!-- Left Input Panel & Toggles -->
                 <div class="lg:col-span-4 space-y-4">
                     <div class="bg-slate-900 text-white rounded-3xl shadow-xl border-4 border-slate-800 overflow-hidden">
                         <div class="bg-slate-800 p-4 flex justify-between items-center border-b border-slate-700">
@@ -140,45 +136,38 @@
                         </div>
 
                         <div class="p-4 space-y-4">
-                            <!-- Input 1 & 2: GA (Wk & Day) -->
                             <div>
                                 <label class="block text-sm font-bold text-amber-200 mb-1.5">Gestation Age (อายุครรภ์มารดา)</label>
                                 <div class="grid grid-cols-2 gap-2">
                                     <div class="bg-slate-950 rounded-xl p-2 border-2 border-slate-700 flex items-center justify-between">
-                                        <input type="number" id="atb-ga-wk" value="0" min="0" 
-                                            class="w-full text-center text-xl font-black bg-transparent text-emerald-400 focus:outline-none no-spin">
+                                        <input type="number" id="atb-ga-wk" value="0" min="0" class="w-full text-center text-xl font-black bg-transparent text-emerald-400 focus:outline-none no-spin">
                                         <span class="text-xs font-bold text-slate-400 px-1">Wk</span>
                                     </div>
                                     <div class="bg-slate-950 rounded-xl p-2 border-2 border-slate-700 flex items-center justify-between">
-                                        <input type="number" id="atb-ga-day" value="0" min="0" max="6" 
-                                            class="w-full text-center text-xl font-black bg-transparent text-emerald-400 focus:outline-none no-spin">
+                                        <input type="number" id="atb-ga-day" value="0" min="0" max="6" class="w-full text-center text-xl font-black bg-transparent text-emerald-400 focus:outline-none no-spin">
                                         <span class="text-xs font-bold text-slate-400 px-1">Day</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Input 3: Postnatal Age (Day) -->
                             <div>
                                 <label class="block text-sm font-bold text-amber-200 mb-1.5">Postnatal Age (อายุทารก)</label>
                                 <div class="flex items-center space-x-2">
                                     <button onclick="adjustValue('atb-pna-day', -1)" class="w-10 h-10 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 border border-slate-600 rounded-xl text-white font-black text-lg flex items-center justify-center">-</button>
                                     <div class="bg-slate-950 rounded-xl p-2 border-2 border-slate-700 flex-1 flex items-center justify-between">
-                                        <input type="number" id="atb-pna-day" value="0" min="0" 
-                                            class="w-full text-center text-xl font-black bg-transparent text-sky-400 focus:outline-none no-spin">
+                                        <input type="number" id="atb-pna-day" value="0" min="0" class="w-full text-center text-xl font-black bg-transparent text-sky-400 focus:outline-none no-spin">
                                         <span class="text-xs font-bold text-slate-400 px-1">Day</span>
                                     </div>
                                     <button onclick="adjustValue('atb-pna-day', 1)" class="w-10 h-10 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 border border-slate-600 rounded-xl text-white font-black text-lg flex items-center justify-center">+</button>
                                 </div>
                             </div>
 
-                            <!-- Input 4: BW (Kg 4 decimals) -->
                             <div>
                                 <label class="block text-sm font-bold text-amber-200 mb-1.5">BW (น้ำหนักทารก)</label>
                                 <div class="flex items-center space-x-2">
                                     <button onclick="adjustValue('atb-bw', -0.05)" class="px-2.5 h-10 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 border border-slate-600 rounded-xl text-white font-black text-xs flex items-center justify-center">-0.05</button>
                                     <div class="bg-slate-950 rounded-xl p-2 border-2 border-slate-700 flex-1 flex items-center justify-between">
-                                        <input type="number" id="atb-bw" value="0.0000" step="0.0001" min="0" 
-                                            class="w-full text-center text-xl font-black bg-transparent text-amber-300 focus:outline-none no-spin">
+                                        <input type="number" id="atb-bw" value="0.0000" step="0.0001" min="0" class="w-full text-center text-xl font-black bg-transparent text-amber-300 focus:outline-none no-spin">
                                         <span class="text-xs font-bold text-slate-400 px-1">Kg</span>
                                     </div>
                                     <button onclick="adjustValue('atb-bw', 0.05)" class="px-2.5 h-10 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 border border-slate-600 rounded-xl text-white font-black text-xs flex items-center justify-center">+0.05</button>
@@ -187,7 +176,6 @@
                         </div>
                     </div>
 
-                    <!-- Drug Toggles -->
                     <div class="bg-white rounded-3xl shadow-md border-2 border-slate-200 p-4 space-y-2.5">
                         <span class="text-xs font-black text-slate-500 uppercase tracking-wider block">เลือกรายการยาที่ต้องการคำนวณ</span>
                         <div class="grid grid-cols-2 gap-2 text-sm font-bold">
@@ -211,10 +199,7 @@
                     </div>
                 </div>
 
-                <!-- Right Sector: Results Display -->
                 <div class="lg:col-span-8 space-y-6">
-                    
-                    <!-- DRUG 1: AMPICILLIN -->
                     <div id="card-ampi" class="bg-white rounded-3xl shadow-xl border-4 border-slate-800 p-5 space-y-4">
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-slate-200 pb-3 gap-2">
                             <div>
@@ -226,7 +211,6 @@
                             </div>
                         </div>
 
-                        <!-- Standard Table -->
                         <div class="overflow-x-auto">
                             <table class="w-full text-sm text-left border-collapse">
                                 <thead>
@@ -243,7 +227,6 @@
                             </table>
                         </div>
 
-                        <!-- Ampicillin Footer Notes -->
                         <div class="bg-slate-50 border border-slate-200 rounded-2xl p-3.5 text-xs text-slate-600 space-y-1.5">
                             <p class="font-bold text-slate-800 text-sm"><i class="fa-solid fa-syringe text-indigo-600"></i> คำแนะนำการบริหารยา Ampicillin:</p>
                             <p>* <strong>IV slow push / IM:</strong> ถ้าไม่เกิน 500 mg ให้ slow push 3-5 นาที ถ้าเกิน ให้ slow push 10-15 นาที</p>
@@ -253,7 +236,6 @@
                         </div>
                     </div>
 
-                    <!-- DRUG 2: GENTAMICIN -->
                     <div id="card-genta" class="bg-white rounded-3xl shadow-xl border-4 border-slate-800 p-5 space-y-4">
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-slate-200 pb-3 gap-2">
                             <div>
@@ -262,7 +244,6 @@
                             </div>
                         </div>
 
-                        <!-- Standard Table -->
                         <div class="overflow-x-auto">
                             <table class="w-full text-sm text-left border-collapse">
                                 <thead>
@@ -278,7 +259,6 @@
                             </table>
                         </div>
 
-                        <!-- Gentamicin Info & Calculated Solution -->
                         <div class="bg-sky-50 border border-sky-200 rounded-2xl p-3.5 text-xs text-sky-950 space-y-1.5">
                             <div class="flex justify-between items-center font-bold text-sm">
                                 <span><i class="fa-solid fa-flask text-sky-600"></i> ปริมาตร Solution อย่างน้อยที่สุดที่ใช้ผสม:</span>
@@ -288,22 +268,26 @@
                         </div>
                     </div>
 
-                    <!-- Placeholders -->
                     <div id="card-cloxa" class="hidden bg-white rounded-3xl shadow-xl border-4 border-slate-800 p-5">
                         <h3 class="text-xl font-black text-emerald-950">Cloxacillin inj.</h3>
                     </div>
                     <div id="card-clinda" class="hidden bg-white rounded-3xl shadow-xl border-4 border-slate-800 p-5">
                         <h3 class="text-xl font-black text-amber-950">Clindamycin inj.</h3>
                     </div>
-
                 </div>
-
             </div>
         </section>
 
+        <!-- Dynamic Footnote Container -->
+        <div id="main-footer"></div>
+
     </div>
 
-    <!-- JavaScript Reference -->
+    <!-- JavaScript References -->
+    <script src="js/app.js"></script>
+    <script src="js/insulin.js"></script>
+    <script src="js/tb-dosing.js"></script>
+    <script src="js/dapt.js"></script>
     <script src="js/smalldose.js"></script>
 </body>
 </html>
